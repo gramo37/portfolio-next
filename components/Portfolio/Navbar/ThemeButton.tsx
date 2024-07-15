@@ -10,7 +10,7 @@ import { MdDarkMode, MdLightMode } from "react-icons/md";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 
-export default function ThemeButton() {
+export default function ThemeButton({ type = "symbol", className = "" }) {
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
 
@@ -24,6 +24,14 @@ export default function ThemeButton() {
     if (theme === "light") setTheme("dark");
     else setTheme("light");
   };
+
+  if (type === "text") {
+    return (
+      <div className={className} onClick={toggleTheme}>
+        {theme === "light" ? "Light Mode" : "Dark Mode"}
+      </div>
+    );
+  }
 
   return (
     <TooltipProvider>
