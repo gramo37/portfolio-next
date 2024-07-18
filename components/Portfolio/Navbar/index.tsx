@@ -30,7 +30,7 @@ const options = [
 
 export default function Navbar() {
   return (
-    <div className="fixed w-[100vw] top-0">
+    <div className="fixed w-[100vw] top-0 z-50">
       <div className="flex justify-between items-center px-5 py-7 bg-accent mx-10 my-3 rounded-full">
         <div className="ml-9">Logo</div>
         <div className="hidden md:block">

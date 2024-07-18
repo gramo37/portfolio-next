@@ -6,6 +6,8 @@ import { ChartConfig, ChartContainer } from "../ui/chart";
 import { Bar, BarChart } from "recharts";
 import { CiCirclePlus } from "react-icons/ci";
 import { FaThumbsUp } from "react-icons/fa";
+import { FaBell } from "react-icons/fa";
+import { Badge } from "../ui/badge";
 
 const professions = ["Frontend", "Backend", "FullStack"];
 
@@ -53,37 +55,67 @@ export default function Dashboard() {
         </div>
       </div>
       <div className="relative h-[70vh]">
-        <div className="w-[350px] bg-accent p-4 rounded-md absolute -top-2 xl:-top-14 right-20 hidden lg:block">
-          <div className="flex justify-between my-4 p-4 rounded-lg bg-white">
-            <div>
-              <h1 className="text-2xl font-bold text-muted-foreground">
-                Post Insight
-              </h1>
-              <p className="text-muted-foreground italic">Mar 21 - Apr 21</p>
-            </div>
-            <div className="flex items-center mr-4">
-              <div className="flex justify-between items-center border rounded-sm py-1 px-2">
-                <p className="text-black">Week 1</p>
-                <CiCirclePlus className="h-5 w-5 ml-3 text-black"/>
+        <div className="h-fit bg-accent rounded-md absolute top-40 xl:top-52 right-20 hidden lg:block">
+          <div className="relative p-4">
+            <Badge className="-top-4 -left-4 p-0 bg-secondary absolute rounded-full w-fit h-fit hover:bg-secondary">
+              <div className="relative">
+                <div className="absolute top-1 right-[0.6rem] w-3 h-3 bg-destructive rounded-full flex justify-center items-center">
+                  <span className="rounded-full p-[2px] text-[8px] text-destructive-foreground">
+                    4
+                  </span>
+                </div>
+                <FaBell className="h-6 w-6 m-3 text-destructive-foreground" />
               </div>
-            </div>
-          </div>
-          <ChartContainer config={chartConfig} className="min-h-[200px] w-full">
-            <BarChart accessibilityLayer data={chartData}>
-              <Bar dataKey="desktop" fill="var(--color-desktop)" radius={4} />
-              <Bar dataKey="mobile" fill="var(--color-mobile)" radius={4} />
-            </BarChart>
-          </ChartContainer>
-          <div className="flex justify-between my-4 p-4 rounded-lg bg-white">
-            <div className="flex gap-2 items-center">
-              <div><FaThumbsUp className="h-10 w-10 text-black"/></div>
+            </Badge>
+            <div className="flex justify-between my-4 px-4 py-3 rounded-lg bg-white">
               <div>
-                <h1 className="text-2xl font-bold text-muted-foreground">Best Performance</h1>
-                <p className="text-muted-foreground italic">Sunday</p>
+                <h1 className="text-lg font-bold text-muted-foreground">
+                  Post Insight
+                </h1>
+                <p className="text-sm text-muted-foreground italic">
+                  Mar 21 - Apr 21
+                </p>
+              </div>
+              <div className="flex items-center mr-1">
+                <div className="flex justify-between items-center border rounded-sm py-1 px-2">
+                  <p className="text-black text-sm">Week 1</p>
+                  <CiCirclePlus className="h-5 w-5 ml-3 text-black" />
+                </div>
               </div>
             </div>
-            <div>
-              <p className="text-muted-foreground font-semibold">1M</p>
+            <ChartContainer config={chartConfig} className="min-h-[200px] ">
+              <BarChart accessibilityLayer data={chartData}>
+                <Bar
+                  dataKey="desktop"
+                  fill="var(--color-desktop)"
+                  radius={4}
+                  className="mx-10"
+                />
+                <Bar
+                  dataKey="mobile"
+                  fill="var(--color-mobile)"
+                  radius={4}
+                  className="mx-10"
+                />
+              </BarChart>
+            </ChartContainer>
+            <div className="flex justify-between my-4 p-4 rounded-lg bg-white">
+              <div className="flex gap-2 items-center">
+                <div>
+                  <FaThumbsUp className="h-8 w-8 text-black" />
+                </div>
+                <div>
+                  <h1 className="text-lg font-bold text-muted-foreground">
+                    Best Performance
+                  </h1>
+                  <p className="text-sm text-muted-foreground italic">Sunday</p>
+                </div>
+              </div>
+              <div>
+                <p className="text-md text-muted-foreground font-semibold">
+                  1M
+                </p>
+              </div>
             </div>
           </div>
         </div>
