@@ -31,8 +31,8 @@ const options = [
 export default function Navbar() {
   return (
     <div className="fixed w-[100vw] top-0 z-50">
-      <div className="flex justify-between items-center px-5 py-7 bg-accent mx-10 my-3 rounded-full">
-        <div className="ml-9">Logo</div>
+      <div className="flex justify-between items-center px-0 md:px-5 py-5 md:py-7 bg-transparent md:bg-accent md:mx-10 md:my-3 md:rounded-full">
+        <div className="ml-9 text-transparent">Logo</div>
         <div className="hidden md:block">
           <ul className="flex gap-10">
             {options.map((option) => {
@@ -52,8 +52,8 @@ export default function Navbar() {
         </div>
         <div className="md:hidden">
           <Sheet>
-            <SheetTrigger>
-              <GiHamburgerMenu className="h-8 w-8 mr-7"/>
+            <SheetTrigger className="bg-secondary-foreground mr-7 p-2 rounded-md border">
+              <GiHamburgerMenu className="h-8 w-8 text-secondary"/>
             </SheetTrigger>
             <SheetContent side="top" className="p-0 pt-8 bg-muted">
               <SheetHeader>
