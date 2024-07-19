@@ -53,7 +53,7 @@ export default function Navbar() {
         <div className="md:hidden">
           <Sheet>
             <SheetTrigger className="bg-secondary-foreground mr-7 p-2 rounded-md border">
-              <GiHamburgerMenu className="h-8 w-8 text-secondary"/>
+              <GiHamburgerMenu className="h-8 w-8 text-secondary" />
             </SheetTrigger>
             <SheetContent side="top" className="p-0 pt-8 bg-muted">
               <SheetHeader>

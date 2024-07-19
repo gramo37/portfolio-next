@@ -8,7 +8,9 @@ const Experience = () => {
       </h1>
       <div className="flex px-2 my-1 justify-center items-start">
         <div className="w-[50vw] ml-4 text-left md:text-right mr-4">
-          <h1 className="text-lg md:text-2xl font-bold">Consultant, Optanium</h1>
+          <h1 className="text-lg md:text-2xl font-bold">
+            Consultant, Optanium
+          </h1>
           <p className="italic text-muted-foreground">Sept 2016, Aug 2014</p>
         </div>
         <div className="flex">

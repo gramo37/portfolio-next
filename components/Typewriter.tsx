@@ -29,7 +29,7 @@ const Typewriter = ({ words, delay = 1000, interval = 100, className }) => {
   useEffect(() => {
     const t = setTimeout(() => {
       if (blinkCursor) setShowCursor((prev) => !prev);
-    }, interval*2);
+    }, interval * 2);
 
     return () => clearTimeout(t);
   }, [interval, blinkCursor, currentIndex, showCursor]);
@@ -58,7 +58,16 @@ const Typewriter = ({ words, delay = 1000, interval = 100, className }) => {
   }, [currentIndex, interval, text]);
 
   return (
-    <span className={cn(`${showCursor ? "border border-y-0 border-l-0 border-primary border-r-2": ""}`, className)}>
+    <span
+      className={cn(
+        `${
+          showCursor
+            ? "border border-y-0 border-l-0 border-primary border-r-2"
+            : ""
+        }`,
+        className
+      )}
+    >
       {currentText}
     </span>
   );
