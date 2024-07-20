@@ -11,15 +11,15 @@ import { Toaster } from "../components/ui/toaster";
 export default function Page() {
   return (
     <div>
-        <Navbar />
-        <Dashboard />
-        <About />
-        <Experience />
-        <Projects />
-        <Skills />
-        <Contact />
-        <Footer />
-        <Toaster />
+      <Navbar />
+      <Dashboard />
+      <About />
+      <Experience />
+      <Projects />
+      <Skills />
+      <Contact />
+      <Footer />
+      <Toaster />
     </div>
   )
 }

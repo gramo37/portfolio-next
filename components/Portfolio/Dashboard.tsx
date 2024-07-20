@@ -40,14 +40,16 @@ export default function Dashboard() {
       </Dialog>
       <div>
         <div className="flex flex-col lg:flex-row justify-center items-center">
-          <div className="z-30 w-fit mx-3 rounded-md">
-            <Image
-              className="w-[300px] h-[300px] bg-gray-200 rounded-full md:w-[400px] md:h-[400px] lg:w-[450px] lg:h-[450px]"
-              width={100}
-              height={100}
-              src={data.profile_photo}
-              alt="Profile"
-            />
+          <div className="z-30 w-fit mx-10 rounded-md">
+            <div className="w-fit h-fit overflow-hidden rounded-full shadow-sm shadow-black dark:shadow-white">
+              <Image
+                className="w-[300px] h-[300px] bg-gray-200 rounded-full md:w-[400px] md:h-[400px] lg:w-[450px] lg:h-[450px] object-fill"
+                width={300}
+                height={300}
+                src={data.profile_photo}
+                alt="Profile"
+              />
+            </div>
           </div>
           <div className="flex justify-around items-center flex-col my-5 md:my-2 mx-3 pt-10">
             <h3 className="text-accent-foreground text-2xl">Hello, I'm</h3>
@@ -67,7 +69,9 @@ export default function Dashboard() {
                 Contact Me
               </Button>
               <Button>
-                <a target="blank" href={data.resume_link}>Download CV</a>
+                <a target="blank" href={data.resume_link}>
+                  Download CV
+                </a>
               </Button>
             </div>
             <div className="flex mx-4 p-4 w-[200px] h-20 items-center gap-4 justify-around">

@@ -1,17 +1,23 @@
+"use client";
+
 import ThemeButton from "./ThemeButton";
 import {
   Sheet,
   SheetContent,
   SheetDescription,
   SheetHeader,
-  SheetTitle,
   SheetTrigger,
 } from "../../ui/sheet";
 import { GiHamburgerMenu } from "react-icons/gi";
 import Link from "next/link";
 import { navOptions } from "../../../constants";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Navbar() {
+  const [open, setOpen] = useState(false);
+  const router = useRouter();
+
   return (
     <div className="fixed w-[100vw] top-0 z-40">
       <div className="flex justify-between items-center px-0 md:px-5 py-5 md:py-7 bg-transparent md:bg-accent md:mx-10 md:my-3 md:rounded-full">
@@ -34,7 +40,7 @@ export default function Navbar() {
           <ThemeButton />
         </div>
         <div className="md:hidden">
-          <Sheet>
+          <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger className="bg-secondary-foreground mr-7 p-2 rounded-md border">
               <GiHamburgerMenu className="h-8 w-8 text-secondary" />
             </SheetTrigger>
@@ -47,6 +53,10 @@ export default function Navbar() {
                         <div
                           key={option.title}
                           className="text-3xl border-muted-foreground/20 border border-x-0 border-t-0 border-b-1 w-full text-center py-10 font-semibold text-muted-foreground cursor-pointer"
+                          onClick={() => {
+                            setOpen(false);
+                            router.push(option.link);
+                          }}
                         >
                           {option.title}
                         </div>
@@ -55,6 +65,7 @@ export default function Navbar() {
                     <ThemeButton
                       type="text"
                       className="md:hidden text-3xl border-muted-foreground/20 border border-x-0 border-t-0 border-b-1 w-full text-center py-10 font-semibold text-muted-foreground cursor-pointer"
+                      onClickFunc={() => setOpen(false)}
                     />
                   </div>
                 </SheetDescription>

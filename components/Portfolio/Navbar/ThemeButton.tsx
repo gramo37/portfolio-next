@@ -10,7 +10,15 @@ import { MdDarkMode, MdLightMode } from "react-icons/md";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 
-export default function ThemeButton({ type = "symbol", className = "" }) {
+export default function ThemeButton({
+  type = "symbol",
+  className = "",
+  onClickFunc,
+}: {
+  type?: string;
+  className?: string;
+  onClickFunc?: () => void;
+}) {
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
 
@@ -23,6 +31,7 @@ export default function ThemeButton({ type = "symbol", className = "" }) {
   const toggleTheme = () => {
     if (theme === "light") setTheme("dark");
     else setTheme("light");
+    if (onClickFunc) onClickFunc();
   };
 
   if (type === "text") {

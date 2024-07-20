@@ -12,7 +12,7 @@ export const About = () => {
         How can I help?
       </h1>
       <div className="flex lg:flex-row flex-col items-start justify-center p-3 pb-0 lg:p-12">
-        <div className="p-2 md:mt-12 lg:pt-0 flex flex-row lg:flex-col gap-3 w-full md:w-fit border md:border-none overflow-y-hidden overflow-x-auto sm:overflow-x-hidden">
+        <div className="p-2 md:mt-10 lg:pt-0 flex flex-row lg:flex-col gap-3 w-full md:w-fit border sm:border-none overflow-y-hidden overflow-x-auto sm:overflow-x-hidden">
           {Object.keys(data.about).map((item) => {
             return (
               <div
@@ -46,9 +46,12 @@ export const About = () => {
         <div className="md:mx-4 lg:p-4 lg:w-[40vw] my-2">
           <div className="pl-4">
             {data.about[tab].points.map((point, index) => {
+              let [title, ...description] = point.split(":");
+              description = description.join("");
               return (
                 <p key={index} className="my-4">
-                  {point}
+                  <span className="font-semibold">{title}: </span>
+                  <span>{description}</span>
                 </p>
               );
             })}

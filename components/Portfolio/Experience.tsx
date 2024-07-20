@@ -18,7 +18,12 @@ const Experience = () => {
             </div>
             <div className="flex">
               <div className="mr-3 flex flex-col">
-                <div className="text-green-700 text-4xl border-4 border-dashed rounded-full">
+                <div
+                  className="text-4xl border-4 border-dashed rounded-full"
+                  style={{
+                    color: item.color,
+                  }}
+                >
                   <GoDotFill />
                 </div>
                 <div className="border-r-4 m-auto w-1 border-dashed mt-1 h-full" />
@@ -49,13 +54,20 @@ const Experience = () => {
             </div>
             <div className="flex">
               <div className="mr-3 flex flex-col">
-                <div className="text-green-700 text-4xl border-4 border-dashed rounded-full">
+                <div
+                  className="text-4xl border-4 border-dashed rounded-full"
+                  style={{
+                    color: item.color,
+                  }}
+                >
                   <GoDotFill />
                 </div>
                 <div className="border-r-4 m-auto w-1 border-dashed mt-1 h-full" />
               </div>
               <div className="w-[50vw]">
-                <h1 className="text-xl w-2/3 font-bold">{item.university_name}</h1>
+                <h1 className="text-xl w-2/3 font-bold">
+                  {item.university_name}
+                </h1>
                 <div className="w-fit lg:w-[400px] mr-4 md:pl-8">
                   {item.description.map((point) => {
                     return <p className="my-4">{point}</p>;

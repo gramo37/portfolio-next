@@ -70,14 +70,6 @@ const ProjectCard = ({
             >
               <h1 className="text-lg font-bold">{project_name}</h1>
               {description.map((item, index) => {
-                // TODO
-                // const [title, description] = item.split(":");
-                // return (
-                //   <span key={index}>
-                //     <p className="font-semibold">{title}</p>{" "}
-                //     <p>{description}</p>
-                //   </span>
-                // );
                 return <p key={index}>{item}</p>;
               })}
             </div>
