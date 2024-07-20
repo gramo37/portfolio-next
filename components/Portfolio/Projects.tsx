@@ -98,7 +98,7 @@ export const Projects = () => {
             {Array.from({ length: 5 }).map((_, index) => (
               <CarouselItem
                 key={index}
-                className="pl-1 md:basis-1/2 lg:basis-1/3"
+                className="pl-1 sm:basis-1/2 lg:basis-1/3"
               >
                 <div className="p-1">
                   <ProjectCard />

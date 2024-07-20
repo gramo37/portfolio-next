@@ -9,7 +9,7 @@ import {
 } from "../../ui/sheet";
 import { GiHamburgerMenu } from "react-icons/gi";
 
-const options = [
+export const options = [
   {
     title: "Home",
     link: "#home",
@@ -30,7 +30,7 @@ const options = [
 
 export default function Navbar() {
   return (
-    <div className="fixed w-[100vw] top-0 z-50">
+    <div className="fixed w-[100vw] top-0 z-40">
       <div className="flex justify-between items-center px-0 md:px-5 py-5 md:py-7 bg-transparent md:bg-accent md:mx-10 md:my-3 md:rounded-full">
         <div className="ml-9 text-transparent">Logo</div>
         <div className="hidden md:block">
