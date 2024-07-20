@@ -37,10 +37,11 @@ export const About = () => {
         How can I help?
       </h1>
       <div className="flex lg:flex-row flex-col items-start lg:items-center justify-center p-3 pb-0 lg:p-12">
-        <div className="p-2 lg:pt-0 flex flex-row lg:flex-col gap-3 w-full md:w-fit border md:border-none overflow-scroll">
+        <div className="p-2 lg:pt-0 flex flex-row lg:flex-col gap-3 w-full md:w-fit border md:border-none overflow-scroll md:overflow-hidden">
           {Object.keys(data).map((item) => {
             return (
               <div
+                key={item}
                 className={cn(
                   "cursor-pointer flex justify-start items-center w-fit lg:items-start gap-3 lg:mb-5 bg-muted/50 p-2 lg:p-4 rounded-lg",
                   `${item === tab && "bg-muted border"}`
@@ -67,13 +68,13 @@ export const About = () => {
             );
           })}
         </div>
-        <div className="md:mx-4 p-4 lg:w-[40vw] my-2">
+        <div className="md:mx-4 lg:p-4 lg:w-[40vw] my-2">
           <div className="pl-4">
-            {data[tab].points.map((point) => {
-              return <p className="my-4">{point}</p>;
+            {data[tab].points.map((point, index) => {
+              return <p key={index} className="my-4">{point}</p>;
             })}
           </div>
-          <div className="border rounded-md w-fit p-2 bg-primary-foreground">
+          <div className="border rounded-md w-fit p-2 bg-primary-foreground ml-5">
             <p className="text-4xl md:text-5xl text-muted-foreground">
               {data[tab].linesOfCode}+
             </p>

@@ -424,7 +424,7 @@ export default function Dashboard() {
           />
         </div>
         <div className="flex justify-around items-center flex-col my-5 md:my-2 mx-3 pt-10">
-          <h3 className="text-accent-foreground text-md">Hello, I'm</h3>
+          <h3 className="text-accent-foreground text-2xl">Hello, I'm</h3>
           <h1 className="text-4xl text-accent-foreground my-0 font-bold text-center">
             Prasanna Gramopadhye
           </h1>

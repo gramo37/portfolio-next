@@ -2,6 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0) translateX(0);
+  }
+  50% {
+    transform: translateY(-5px) translateX(0);
+  }
+}
+
+.animate-bounce {
+  animation: bounce 1s initial;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
