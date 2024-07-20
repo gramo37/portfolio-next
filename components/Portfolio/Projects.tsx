@@ -12,12 +12,18 @@ import {
 } from "../ui/carousel";
 import { FaArrowCircleUp } from "react-icons/fa";
 import { FaArrowCircleDown } from "react-icons/fa";
+import { data } from "../../constants";
 
-const ProjectCard = () => {
+const ProjectCard = ({
+  project_name,
+  project_link,
+  background_img_url,
+  description,
+}) => {
   const [showContent, setShowContent] = React.useState(false);
 
   const clickHandler = (e) => {
-    window.location.href = "https://google.com";
+    window.open(project_link, "_blank");
   };
 
   return (
@@ -30,25 +36,25 @@ const ProjectCard = () => {
       <CardContent
         className="flex aspect-square p-6 bg-cover bg-center bg-no-repeat cursor-pointer rounded-lg"
         style={{
-          backgroundImage: `url("/profile.jpeg")`,
+          backgroundImage: `url(${background_img_url})`,
         }}
       >
         <div className="absolute bottom-0 mb-5 text-white text-5xl z-30 text-center lg:hidden">
-        <button
-          onClick={(e) => {
-            setShowContent((prev) => !prev);
-            e.preventDefault();
-            e.stopPropagation();
-          }}
-          className="animate-bounce shadow-lg shadow-white rounded-full"
-        >
-          {showContent ? <FaArrowCircleDown /> : <FaArrowCircleUp />}
-        </button>
+          <button
+            onClick={(e) => {
+              setShowContent((prev) => !prev);
+              e.preventDefault();
+              e.stopPropagation();
+            }}
+            className="animate-bounce shadow-lg shadow-white rounded-full"
+          >
+            {showContent ? <FaArrowCircleDown /> : <FaArrowCircleUp />}
+          </button>
         </div>
         <div className="absolute inset-0 bg-gray-900 bg-opacity-60 z-20 rounded-lg">
           <div className="text-white relative  m-5">
-            <h1 className="text-lg font-bold">Smart Exam</h1>
-            <p className="text-md">Online Exam Portal</p>
+            <h1 className="text-lg font-bold">{project_name}</h1>
+            {/* <p className="text-md">Online Exam Portal</p> */}
           </div>
         </div>
         <div
@@ -62,19 +68,18 @@ const ProjectCard = () => {
             <div
               className={`flex flex-col gap-4 justify-start items-center border p-4 h-full`}
             >
-              <h1 className="text-lg font-bold">Smart Exam</h1>
-              <p>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Libero
-                illum ipsum minima quaerat maiores repellendus.
-              </p>
-              <p>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Libero
-                illum ipsum minima quaerat maiores repellendus.
-              </p>
-              <p>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Libero
-                illum ipsum minima quaerat maiores repellendus.
-              </p>
+              <h1 className="text-lg font-bold">{project_name}</h1>
+              {description.map((item, index) => {
+                // TODO
+                // const [title, description] = item.split(":");
+                // return (
+                //   <span key={index}>
+                //     <p className="font-semibold">{title}</p>{" "}
+                //     <p>{description}</p>
+                //   </span>
+                // );
+                return <p key={index}>{item}</p>;
+              })}
             </div>
           </div>
         </div>
@@ -85,7 +90,7 @@ const ProjectCard = () => {
 
 export const Projects = () => {
   return (
-    <>
+    <div id="projects">
       <h1 className="text-4xl md:text-5xl font-bold mb-3 sm:text-center md:my-5 mx-5 mt-5">
         My Latest Works
       </h1>
@@ -95,13 +100,13 @@ export const Projects = () => {
       <div className="my-4 px-5 w-[85%] sm:w-[90%] mx-auto">
         <Carousel className="">
           <CarouselContent className="-ml-1">
-            {Array.from({ length: 5 }).map((_, index) => (
+            {data.project.map((item, index) => (
               <CarouselItem
                 key={index}
                 className="pl-1 sm:basis-1/2 lg:basis-1/3"
               >
                 <div className="p-1">
-                  <ProjectCard />
+                  <ProjectCard {...item} />
                 </div>
               </CarouselItem>
             ))}
@@ -110,6 +115,6 @@ export const Projects = () => {
           <CarouselNext />
         </Carousel>
       </div>
-    </>
+    </div>
   );
 };

@@ -6,6 +6,7 @@ import Footer from "../components/Portfolio/Footer";
 import Navbar from "../components/Portfolio/Navbar";
 import { Projects } from "../components/Portfolio/Projects";
 import Skills from "../components/Portfolio/Skills";
+import { Toaster } from "../components/ui/toaster";
 
 export default function Page() {
   return (
@@ -18,6 +19,7 @@ export default function Page() {
         <Skills />
         <Contact />
         <Footer />
+        <Toaster />
     </div>
   )
 }

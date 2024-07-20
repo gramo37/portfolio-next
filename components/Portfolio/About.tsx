@@ -1,44 +1,19 @@
 "use client";
 
 import { useState } from "react";
-import { GrNodes } from "react-icons/gr";
-import { FaReact } from "react-icons/fa6";
 import { cn } from "../../lib/utils";
-
-const data = {
-  "Frontend Development": {
-    points: [
-      "Lorem ipsum sit amet consectetur adipisicing elit. NostrumLorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum",
-      "Lorem ipsum  sit amet consectetur adipisicing elit. Nostrum Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum",
-    ],
-    linesOfCode: 10000,
-    icon: FaReact,
-    color: "#4ade80",
-    projectsCompleted: 10,
-  },
-  "Backend Development": {
-    points: [
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum",
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum",
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum",
-    ],
-    linesOfCode: 14000,
-    icon: GrNodes,
-    color: "#60a5fa",
-    projectsCompleted: 20,
-  },
-};
+import { data } from "../../constants";
 
 export const About = () => {
   const [tab, setTab] = useState("Frontend Development");
   return (
-    <>
+    <div id="about">
       <h1 className="text-4xl md:text-5xl font-bold mb-3 sm:text-center md:my-5 mx-5">
         How can I help?
       </h1>
-      <div className="flex lg:flex-row flex-col items-start lg:items-center justify-center p-3 pb-0 lg:p-12">
-        <div className="p-2 lg:pt-0 flex flex-row lg:flex-col gap-3 w-full md:w-fit border md:border-none overflow-scroll md:overflow-hidden">
-          {Object.keys(data).map((item) => {
+      <div className="flex lg:flex-row flex-col items-start justify-center p-3 pb-0 lg:p-12">
+        <div className="p-2 md:mt-12 lg:pt-0 flex flex-row lg:flex-col gap-3 w-full md:w-fit border md:border-none overflow-y-hidden overflow-x-auto sm:overflow-x-hidden">
+          {Object.keys(data.about).map((item) => {
             return (
               <div
                 key={item}
@@ -53,15 +28,15 @@ export const About = () => {
                 <div
                   className="text-5xl lg:text-7xl"
                   style={{
-                    color: data[item].color,
+                    color: data.about[item].color,
                   }}
                 >
-                  {data[item].icon()}
+                  {data.about[item].icon()}
                 </div>
                 <div className="text-muted-foreground">
                   <h1 className="text-lg lg:text-2xl font-bold">{item}</h1>
                   <p className="hidden lg:block">
-                    {data[item].projectsCompleted} Projects Completed
+                    {data.about[item].projectsCompleted} Projects Completed
                   </p>
                 </div>
               </div>
@@ -70,18 +45,22 @@ export const About = () => {
         </div>
         <div className="md:mx-4 lg:p-4 lg:w-[40vw] my-2">
           <div className="pl-4">
-            {data[tab].points.map((point, index) => {
-              return <p key={index} className="my-4">{point}</p>;
+            {data.about[tab].points.map((point, index) => {
+              return (
+                <p key={index} className="my-4">
+                  {point}
+                </p>
+              );
             })}
           </div>
           <div className="border rounded-md w-fit p-2 bg-primary-foreground ml-5">
             <p className="text-4xl md:text-5xl text-muted-foreground">
-              {data[tab].linesOfCode}+
+              {data.about[tab].linesOfCode}+
             </p>
             <p className="ml-3 italic">Lines of code</p>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };

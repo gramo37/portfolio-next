@@ -10,13 +10,13 @@ import { FaGithub } from "react-icons/fa";
 import Image from "next/image";
 import { Dialog, DialogContent, DialogHeader } from "../ui/dialog";
 import { ContactForm } from "./Contact";
-
-const professions = ["Frontend", "Backend", "FullStack"];
+import { professions, data } from "../../constants";
+import Link from "next/link";
 
 export default function Dashboard() {
   const [open, setOpen] = React.useState(false);
   return (
-    <>
+    <div id="home" className="pt-16 md:pt-[120px]">
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent className="sm:max-w-[825px]">
           <DialogHeader></DialogHeader>
@@ -39,20 +39,20 @@ export default function Dashboard() {
         </DialogContent>
       </Dialog>
       <div>
-        <div className="flex flex-col lg:flex-row justify-center items-center mt-16 md:mt-[120px]">
-          <div className="z-40 w-fit mx-3 rounded-md">
+        <div className="flex flex-col lg:flex-row justify-center items-center">
+          <div className="z-30 w-fit mx-3 rounded-md">
             <Image
               className="w-[300px] h-[300px] bg-gray-200 rounded-full md:w-[400px] md:h-[400px] lg:w-[450px] lg:h-[450px]"
               width={100}
               height={100}
-              src="/profile.jpeg"
+              src={data.profile_photo}
               alt="Profile"
             />
           </div>
           <div className="flex justify-around items-center flex-col my-5 md:my-2 mx-3 pt-10">
             <h3 className="text-accent-foreground text-2xl">Hello, I'm</h3>
             <h1 className="text-4xl text-accent-foreground my-0 font-bold text-center">
-              Prasanna Gramopadhye
+              {data.name}
             </h1>
             <div className="my-2">
               <Typewriter
@@ -66,31 +66,36 @@ export default function Dashboard() {
               <Button variant="secondary" onClick={() => setOpen(true)}>
                 Contact Me
               </Button>
-              <Button>Download CV</Button>
+              <Button>
+                <a target="blank" href={data.resume_link}>Download CV</a>
+              </Button>
             </div>
             <div className="flex mx-4 p-4 w-[200px] h-20 items-center gap-4 justify-around">
-              <a
+              <Link
                 className="text-4xl hover:text-5xl transition-all"
-                href="https://google.com"
+                href={data.twitter_link}
+                target="blank"
               >
                 <FaTwitter />
-              </a>
-              <a
+              </Link>
+              <Link
                 className="text-4xl hover:text-5xl transition-all"
-                href="https://google.com"
+                href={data.linkedin_link}
+                target="blank"
               >
                 <FaLinkedin />
-              </a>
-              <a
+              </Link>
+              <Link
                 className="text-4xl hover:text-5xl transition-all"
-                href="https://google.com"
+                href={data.github_link}
+                target="blank"
               >
                 <FaGithub />
-              </a>
+              </Link>
             </div>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }

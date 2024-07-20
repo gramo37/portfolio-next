@@ -1,5 +1,6 @@
 import React from "react";
-import { options } from "./Navbar";
+import { navOptions } from "../../constants";
+import Link from "next/link";
 
 const Footer: React.FC = () => {
   return (
@@ -7,11 +8,11 @@ const Footer: React.FC = () => {
       <div className="container mx-auto flex flex-col md:flex-row justify-between items-center">
         <div className="flex flex-col md:flex-row items-center">
           <nav className="flex space-x-4 mt-4 md:mt-0 font-bold cursor-pointer">
-            {options?.map((item, i) => {
+            {navOptions?.map((item, i) => {
               return (
-                <a key={i} href={item.link}>
+                <Link key={i} href={item.link}>
                   <p className="hover:text-gray-400">{item.title}</p>
-                </a>
+                </Link>
               );
             })}
           </nav>

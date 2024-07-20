@@ -8,25 +8,8 @@ import {
   SheetTrigger,
 } from "../../ui/sheet";
 import { GiHamburgerMenu } from "react-icons/gi";
-
-export const options = [
-  {
-    title: "Home",
-    link: "#home",
-  },
-  {
-    title: "About",
-    link: "#about",
-  },
-  {
-    title: "Skills",
-    link: "#skills",
-  },
-  {
-    title: "Projects",
-    link: "#projects",
-  },
-];
+import Link from "next/link";
+import { navOptions } from "../../../constants";
 
 export default function Navbar() {
   return (
@@ -35,13 +18,13 @@ export default function Navbar() {
         <div className="ml-9 text-transparent">Logo</div>
         <div className="hidden md:block">
           <ul className="flex gap-10">
-            {options.map((option) => {
+            {navOptions.map((option) => {
               return (
                 <li
                   key={option.title}
                   className="font-bold text-muted-foreground cursor-pointer"
                 >
-                  {option.title}
+                  <Link href={option.link}>{option.title}</Link>
                 </li>
               );
             })}
@@ -55,11 +38,11 @@ export default function Navbar() {
             <SheetTrigger className="bg-secondary-foreground mr-7 p-2 rounded-md border">
               <GiHamburgerMenu className="h-8 w-8 text-secondary" />
             </SheetTrigger>
-            <SheetContent side="top" className="p-0 pt-8 bg-muted">
+            <SheetContent side="top" className="p-0 bg-muted">
               <SheetHeader>
-                <SheetDescription className="h-[100vh]">
-                  <div className="flex flex-col justify-center items-center">
-                    {options.map((option) => {
+                <SheetDescription className="h-[100vh] overflow-auto">
+                  <div className="flex flex-col justify-between items-center h-full">
+                    {navOptions.map((option) => {
                       return (
                         <div
                           key={option.title}
