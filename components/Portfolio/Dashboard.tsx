@@ -18,7 +18,7 @@ export default function Dashboard() {
   return (
     <div id="home" className="pt-16 md:pt-[120px]">
       <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent className="sm:max-w-[825px]">
+        <DialogContent className="sm:max-w-[825px] h-screen-custom">
           <DialogHeader></DialogHeader>
           <div className="ml-5">
             <h1 className="text-3xl md:text-4xl font-bold">

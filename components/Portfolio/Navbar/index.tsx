@@ -13,10 +13,12 @@ import Link from "next/link";
 import { navOptions } from "../../../constants";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import useViewportHeight from "../../../hooks/useViewPortHeight";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const router = useRouter();
+  useViewportHeight();
 
   return (
     <div className="fixed w-[100vw] top-0 z-40">
@@ -46,7 +48,7 @@ export default function Navbar() {
             </SheetTrigger>
             <SheetContent side="top" className="p-0 bg-muted">
               <SheetHeader>
-                <SheetDescription className="h-[100vh] overflow-auto">
+                <SheetDescription className="h-screen-custom overflow-auto">
                   <div className="flex flex-col justify-between items-center h-full">
                     {navOptions.map((option) => {
                       return (

@@ -16,6 +16,10 @@
   animation: bounce 1s initial;
 }
 
+.h-screen-custom {
+  height: calc(var(--vh, 1vh) * 100);
+}
+
 html {
   scroll-behavior: smooth;
 }
