@@ -13,6 +13,7 @@ import {
 import { FaArrowCircleUp } from "react-icons/fa";
 import { FaArrowCircleDown } from "react-icons/fa";
 import { data } from "../../constants";
+import { cn } from "../../lib/utils";
 
 const ProjectCard = ({
   project_name,
@@ -42,11 +43,12 @@ const ProjectCard = ({
         <div className="absolute bottom-0 mb-5 text-white text-5xl z-30 text-center lg:hidden">
           <button
             onClick={(e) => {
-              setShowContent((prev) => !prev);
+              if(!showContent) setShowContent(true);
+              else if(showContent) setShowContent(false);
               e.preventDefault();
               e.stopPropagation();
             }}
-            className="animate-bounce shadow-lg shadow-white rounded-full"
+            className="shadow-lg shadow-white rounded-full border p-2"
           >
             {showContent ? <FaArrowCircleDown /> : <FaArrowCircleUp />}
           </button>
@@ -58,15 +60,18 @@ const ProjectCard = ({
           </div>
         </div>
         <div
-          className={`absolute inset-0 bg-gray-900 bg-opacity-100 z-20 p-4 transition-all rounded-lg ${
-            showContent
-              ? "translate-y-0 opacity-100"
-              : "translate-y-[100%] opacity-0"
-          }`}
+          className={cn(
+            "absolute inset-0 bg-gray-900 bg-opacity-100 z-20 p-4 transition-transform rounded-lg",
+            `${
+              showContent
+                ? "translate-y-0 opacity-100"
+                : "translate-y-[100%] opacity-0"
+            }`
+          )}
         >
           <div className="text-white relative border h-full w-full">
             <div
-              className={`flex flex-col gap-4 justify-start items-center border p-4 h-full`}
+              className={`flex flex-col gap-4 justify-start items-center border p-4 h-full overflow-auto`}
             >
               <h1 className="text-lg font-bold">{project_name}</h1>
               {description.map((item, index) => {
