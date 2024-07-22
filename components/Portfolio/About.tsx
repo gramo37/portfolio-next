@@ -19,7 +19,7 @@ export const About = () => {
                 key={item}
                 className={cn(
                   "cursor-pointer flex justify-start items-center w-fit lg:items-start gap-3 lg:mb-5 bg-muted/50 p-2 lg:p-4 rounded-lg",
-                  `${item === tab && "bg-muted border"}`
+                  `${item === tab && "bg-muted border"}`,
                 )}
                 onClick={() => {
                   setTab(item);

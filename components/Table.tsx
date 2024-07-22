@@ -166,7 +166,7 @@ const columns: ColumnDef<Payment>[] = [
 export function TableContainer() {
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
-    []
+    [],
   );
   const [columnVisibility, setColumnVisibility] =
     React.useState<VisibilityState>({});
@@ -248,7 +248,7 @@ export function TableContainer() {
                             ? null
                             : flexRender(
                                 header.column.columnDef.header,
-                                header.getContext()
+                                header.getContext(),
                               )}
                         </TableHead>
                       );
@@ -268,7 +268,7 @@ export function TableContainer() {
                         <TableCell key={cell.id}>
                           {flexRender(
                             cell.column.columnDef.cell,
-                            cell.getContext()
+                            cell.getContext(),
                           )}
                         </TableCell>
                       ))}

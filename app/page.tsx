@@ -21,5 +21,5 @@ export default function Page() {
       <Footer />
       <Toaster />
     </div>
-  )
+  );
 }

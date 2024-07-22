@@ -19,7 +19,7 @@ export const data = {
         "Responsive Design: Ensuring websites look perfect on any device, from desktops to mobile phones, using modern CSS frameworks and media queries.",
         "Interactive User Experiences: Creating dynamic and interactive web applications with JavaScript, React, and other modern frontend technologies to captivate the audience.",
         "Performance Optimization: Optimizing websites for speed and efficiency, ensuring quick load times and smooth performance.",
-        "Accessibility: Building websites accessible to all users, adhering to the latest accessibility standards."
+        "Accessibility: Building websites accessible to all users, adhering to the latest accessibility standards.",
       ],
       linesOfCode: 30000,
       icon: FaReact,
@@ -48,7 +48,7 @@ export const data = {
         "Solved more than 400 DSA Problems",
         "Learned about LLD and HLD with real world examples",
       ],
-      color: "rgb(21 128 61 / 1)"
+      color: "rgb(21 128 61 / 1)",
     },
     {
       degree_name: "Bachelors Degree",
@@ -60,7 +60,7 @@ export const data = {
         "Our BE Project won first prize among 20 teams in the Online National Project Competition.",
         "Successfully cleared all subjects with no backlogs and securing an overall 8.84 CGPA.",
       ],
-      color: "rgb(202 138 4 / 1)"
+      color: "rgb(202 138 4 / 1)",
     },
   ],
   skills: [
@@ -197,7 +197,7 @@ export const data = {
         "Developed a data-driven graph plotting service using canvas",
         "Key Technologies worked: Express.js · TypeScript · Material-UI · PostgreSQL · Redis · Node.js · JavaScript · React.js",
       ],
-      color: "rgb(21 128 61 / 1)"
+      color: "rgb(21 128 61 / 1)",
     },
     {
       company_name: "Tata Consultancy Services Ltd",
@@ -210,7 +210,7 @@ export const data = {
         "- Closely worked with the client and other application teams to resolve issues, provide Root Cause Analysis, Technical document preparation.",
         "Key technologies worked with: HTML, CSS, JavaScript, React, Node.js, Typescript, SQL, Git.",
       ],
-      color: "rgb(202 138 4 / 1)"
+      color: "rgb(202 138 4 / 1)",
     },
   ],
 };

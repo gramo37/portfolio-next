@@ -65,7 +65,7 @@ const Typewriter = ({ words, delay = 1000, interval = 100, className }) => {
             ? "border border-y-0 border-l-0 border-primary border-r-2"
             : ""
         }`,
-        className
+        className,
       )}
     >
       {currentText}

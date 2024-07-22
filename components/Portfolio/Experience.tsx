@@ -9,7 +9,10 @@ const Experience = () => {
       </h1>
       {data.workExperience.map((item, index) => {
         return (
-          <div key={index} className="flex px-2 my-1 justify-center items-start">
+          <div
+            key={index}
+            className="flex px-2 my-1 justify-center items-start"
+          >
             <div className="w-[50vw] ml-4 text-left md:text-right mr-4">
               <h1 className="text-lg md:text-2xl font-bold">
                 {item.company_name}
@@ -32,7 +35,11 @@ const Experience = () => {
                 <h1 className="text-2xl font-bold">{item.profession}</h1>
                 <div className="w-fit lg:w-[400px] mr-4 md:pl-8">
                   {item.description.map((point, i) => {
-                    return <p key={i} className="my-4">{point}</p>;
+                    return (
+                      <p key={i} className="my-4">
+                        {point}
+                      </p>
+                    );
                   })}
                 </div>
               </div>
@@ -70,7 +77,11 @@ const Experience = () => {
                 </h1>
                 <div className="w-fit lg:w-[400px] mr-4 md:pl-8">
                   {item.description.map((point, i) => {
-                    return <p key={i} className="my-4">{point}</p>;
+                    return (
+                      <p key={i} className="my-4">
+                        {point}
+                      </p>
+                    );
                   })}
                 </div>
               </div>

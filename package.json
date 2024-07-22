@@ -9,7 +9,7 @@
     "start": "next start",
     "lint": "next lint",
     "prepare": "husky install",
-    "format": "pretty-quick -w"
+    "format": "pretty-quick --staged"
   },
   "author": "",
   "license": "ISC",

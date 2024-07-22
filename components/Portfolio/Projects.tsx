@@ -43,8 +43,8 @@ const ProjectCard = ({
         <div className="absolute bottom-0 mb-5 text-white text-5xl z-30 text-center lg:hidden">
           <button
             onClick={(e) => {
-              if(!showContent) setShowContent(true);
-              else if(showContent) setShowContent(false);
+              if (!showContent) setShowContent(true);
+              else if (showContent) setShowContent(false);
               e.preventDefault();
               e.stopPropagation();
             }}
@@ -66,7 +66,7 @@ const ProjectCard = ({
               showContent
                 ? "translate-y-0 opacity-100"
                 : "translate-y-[100%] opacity-0"
-            }`
+            }`,
           )}
         >
           <div className="text-white relative border h-full w-full">

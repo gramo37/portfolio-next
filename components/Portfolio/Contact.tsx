@@ -67,7 +67,7 @@ export function ContactForm() {
               "service_npzjtpg",
               "template_v1582qq",
               formRef?.current,
-              "uF6OeJEqNkVC7B5mC"
+              "uF6OeJEqNkVC7B5mC",
             )
             .then(
               () => {
@@ -78,14 +78,17 @@ export function ContactForm() {
                   description: "Your message has been sent.",
                 });
                 setSendMail(false);
-                setTimeout(() => {
-                  setSendMail(true);
-                }, 60 * 10 * 1000);
+                setTimeout(
+                  () => {
+                    setSendMail(true);
+                  },
+                  60 * 10 * 1000,
+                );
               },
               () => {
                 setLoading(false);
                 alert("Something went wrong");
-              }
+              },
             )
             .catch((error: any) => console.log(error));
       },
