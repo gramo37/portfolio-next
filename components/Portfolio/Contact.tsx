@@ -8,6 +8,7 @@ import * as Yup from "yup";
 import emailjs from "@emailjs/browser";
 import { useFormik } from "formik";
 import { useToast } from "../ui/use-toast";
+import { data } from "../../constants";
 
 const contactMeSchema = Yup.object({
   firstname: Yup.string()
@@ -183,14 +184,14 @@ export function ContactForm() {
 
 const Contact = () => {
   return (
-    <div className="p-2 pt-5 bg-muted rounded-lg m-10 md:m-auto md:w-[825px]">
+    <div className="p-2 pt-5 bg-muted rounded-lg m-10 md:mx-auto md:w-[825px]">
       <div className="ml-5">
         <h1 className="text-3xl md:text-4xl font-bold">Contact Me</h1>
         <p className="my-2 text-md md:text-lg italic text-muted-foreground">
           Don't like forms? Send me an{" "}
           <a
             className="text-secondary underline cursor-pointer font-bold not-italic"
-            href="mailto:gramopadhye37@gmail.com"
+            href={`mailto:${data.email}`}
           >
             email
           </a>

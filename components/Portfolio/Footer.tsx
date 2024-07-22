@@ -1,5 +1,5 @@
 import React from "react";
-import { navOptions } from "../../constants";
+import { data, navOptions } from "../../constants";
 import Link from "next/link";
 
 const Footer: React.FC = () => {
@@ -20,14 +20,14 @@ const Footer: React.FC = () => {
         <div className="mt-4 md:mt-0">
           <p>
             Email:{" "}
-            <a href="mailto:example@mail.com" className="hover:text-gray-400">
-              example@mail.com
+            <a href={`mailto:${data.email}`} className="hover:text-gray-400">
+              {data.email}
             </a>
           </p>
           <p>
             Phone:{" "}
-            <a href="tel:+1234567890" className="hover:text-gray-400">
-              +123 456 7890
+            <a href={`tel:${data.phone}`} className="hover:text-gray-400">
+              {data.phone}
             </a>
           </p>
         </div>

@@ -7,9 +7,9 @@ const Experience = () => {
       <h1 className="text-4xl md:text-5xl sm:text-center font-bold my-5 mb-7 md:my-3 mx-5">
         Work Experience
       </h1>
-      {data.workExperience.map((item) => {
+      {data.workExperience.map((item, index) => {
         return (
-          <div className="flex px-2 my-1 justify-center items-start">
+          <div key={index} className="flex px-2 my-1 justify-center items-start">
             <div className="w-[50vw] ml-4 text-left md:text-right mr-4">
               <h1 className="text-lg md:text-2xl font-bold">
                 {item.company_name}
@@ -31,8 +31,8 @@ const Experience = () => {
               <div className="w-[50vw]">
                 <h1 className="text-2xl font-bold">{item.profession}</h1>
                 <div className="w-fit lg:w-[400px] mr-4 md:pl-8">
-                  {item.description.map((point) => {
-                    return <p className="my-4">{point}</p>;
+                  {item.description.map((point, i) => {
+                    return <p key={i} className="my-4">{point}</p>;
                   })}
                 </div>
               </div>
@@ -43,9 +43,9 @@ const Experience = () => {
       <h1 className="text-4xl md:text-5xl sm:text-center font-bold my-5 mb-7 md:my-3 mx-5">
         Education
       </h1>
-      {data.education.map((item) => {
+      {data.education.map((item, i) => {
         return (
-          <div className="flex px-2 my-1 justify-center items-start">
+          <div key={i} className="flex px-2 my-1 justify-center items-start">
             <div className="w-[50vw] ml-4 text-left md:text-right mr-4">
               <h1 className="text-lg md:text-2xl font-bold">
                 {item.degree_name}
@@ -69,8 +69,8 @@ const Experience = () => {
                   {item.university_name}
                 </h1>
                 <div className="w-fit lg:w-[400px] mr-4 md:pl-8">
-                  {item.description.map((point) => {
-                    return <p className="my-4">{point}</p>;
+                  {item.description.map((point, i) => {
+                    return <p key={i} className="my-4">{point}</p>;
                   })}
                 </div>
               </div>
