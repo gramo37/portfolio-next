@@ -6,6 +6,7 @@ const useDebouncedScroll = (
 ) => {
   const [scrollY, setScrollY] = useState(0);
   const timeoutRef = useRef<number | null>(null);
+  const firstref = useRef<boolean>(false);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -31,6 +32,11 @@ const useDebouncedScroll = (
   }, [delay]);
 
   useEffect(() => {
+    // Ignore first call
+    if (!firstref.current) {
+      firstref.current = true;
+      return;
+    }
     callback(scrollY);
   }, [scrollY, callback]);
 };

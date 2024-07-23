@@ -27,10 +27,11 @@ export default function Navbar() {
   useDebouncedScroll((scrollY) => {
     console.log(scrollY, lastScrollY, scrollY > lastScrollY);
     if (scrollY === lastScrollY) {
+      return;
     } else if (scrollY > lastScrollY) {
-      setIsVisible(true);
-    } else {
       setIsVisible(false);
+    } else {
+      setIsVisible(true);
     }
     setLastScrollY(scrollY);
   }, 10);
@@ -39,7 +40,7 @@ export default function Navbar() {
     <div
       className={cn(
         "fixed w-[100vw] top-0 z-40 transition-all translate-y-0",
-        `${isVisible ? "md:-translate-y-full" : "md:translate-y-0"}`,
+        `${isVisible ? "md:translate-y-0" : "md:-translate-y-full"}`,
       )}
     >
       <div className="flex justify-between items-center px-0 md:px-5 py-5 md:py-7 bg-transparent md:bg-accent md:mx-10 md:my-3 md:rounded-full">

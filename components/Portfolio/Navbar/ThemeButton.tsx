@@ -23,6 +23,7 @@ export default function ThemeButton({
   const { theme, setTheme } = useTheme();
 
   useEffect(() => {
+    setTheme("dark");
     setMounted(true);
   }, []);
 
