@@ -7,7 +7,7 @@ import { data } from "../../constants";
 export const About = () => {
   const [tab, setTab] = useState("Frontend Development");
   return (
-    <div id="about">
+    <div id="about mt-10">
       <h1 className="text-4xl md:text-5xl font-bold mb-3 sm:text-center md:my-5 mx-5">
         How can I help?
       </h1>
@@ -15,7 +15,7 @@ export const About = () => {
         <div className="p-2 md:mt-10 lg:pt-0 flex flex-row lg:flex-col gap-3 w-full md:w-fit border sm:border-none overflow-y-hidden overflow-x-auto sm:overflow-x-hidden">
           {Object.keys(data.about).map((item) => {
             return (
-              <div
+              <button
                 key={item}
                 className={cn(
                   "cursor-pointer flex justify-start items-center w-fit lg:items-start gap-3 lg:mb-5 bg-muted/50 p-2 lg:p-4 rounded-lg",
@@ -39,7 +39,7 @@ export const About = () => {
                     {data.about[item].projectsCompleted} Projects Completed
                   </p>
                 </div>
-              </div>
+              </button>
             );
           })}
         </div>

@@ -14,14 +14,34 @@ import { navOptions } from "../../../constants";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import useViewportHeight from "../../../hooks/useViewPortHeight";
+import useDebouncedScroll from "../../../hooks/useDebounceedScroll";
+import { cn } from "../../../lib/utils";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const router = useRouter();
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
   useViewportHeight();
+  useDebouncedScroll((scrollY) => {
+    console.log(scrollY, lastScrollY, scrollY > lastScrollY);
+    if (scrollY === lastScrollY) {
+    } else if (scrollY > lastScrollY) {
+      setIsVisible(true);
+    } else {
+      setIsVisible(false);
+    }
+    setLastScrollY(scrollY);
+  }, 10);
 
   return (
-    <div className="fixed w-[100vw] top-0 z-40">
+    <div
+      className={cn(
+        "fixed w-[100vw] top-0 z-40 transition-all translate-y-0",
+        `${isVisible ? "md:-translate-y-full" : "md:translate-y-0"}`,
+      )}
+    >
       <div className="flex justify-between items-center px-0 md:px-5 py-5 md:py-7 bg-transparent md:bg-accent md:mx-10 md:my-3 md:rounded-full">
         <div className="ml-9 text-transparent">Logo</div>
         <div className="hidden md:block">
