@@ -25,7 +25,6 @@ export default function Navbar() {
 
   useViewportHeight();
   useDebouncedScroll((scrollY) => {
-    console.log(scrollY, lastScrollY, scrollY > lastScrollY);
     if (scrollY === lastScrollY) {
       return;
     } else if (scrollY > lastScrollY) {
