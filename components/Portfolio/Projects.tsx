@@ -20,6 +20,7 @@ const ProjectCard = ({
   project_link,
   background_img_url,
   description,
+  project_date,
 }) => {
   const [showContent, setShowContent] = React.useState(false);
 
@@ -48,7 +49,7 @@ const ProjectCard = ({
               e.preventDefault();
               e.stopPropagation();
             }}
-            className="shadow-lg shadow-white rounded-full border p-2"
+            className="animate-bounce shadow-lg shadow-white rounded-full border"
           >
             {showContent ? <FaArrowCircleDown /> : <FaArrowCircleUp />}
           </button>
@@ -56,7 +57,7 @@ const ProjectCard = ({
         <div className="absolute inset-0 bg-gray-900 bg-opacity-60 z-20 rounded-lg">
           <div className="text-white relative  m-5">
             <h1 className="text-lg font-bold">{project_name}</h1>
-            {/* <p className="text-md">Online Exam Portal</p> */}
+            <p className="text-md">{project_date}</p>
           </div>
         </div>
         <div

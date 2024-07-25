@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { cn } from "../../lib/utils";
 import { data } from "../../constants";
+import Counter from "../Counter";
 
 export const About = () => {
   const [tab, setTab] = useState("Frontend Development");
@@ -58,7 +59,17 @@ export const About = () => {
           </div>
           <div className="border rounded-md w-fit p-2 bg-primary-foreground ml-5">
             <p className="text-4xl md:text-5xl text-muted-foreground">
-              {data.about[tab].linesOfCode}+
+              {Object.keys(data.about).map((t) => {
+                return (
+                  <div
+                    key={t}
+                    className={cn("flex", t === tab ? "visible" : "hidden")}
+                  >
+                    <Counter limit={data.about[t].linesOfCode} />
+                    <span>+</span>
+                  </div>
+                );
+              })}
             </p>
             <p className="ml-3 italic">Lines of code</p>
           </div>

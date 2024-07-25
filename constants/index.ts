@@ -116,6 +116,7 @@ export const data = {
       background_img_url:
         "https://res.cloudinary.com/dwtxio5dn/image/upload/v1721490771/j8vxi2c0ptavv44tbh66.png",
       project_link: "https://github.com/calcom/cal.com/pull/15632",
+      project_date: "Apr 2024",
     },
     {
       project_name: "Online Chess Platform",
@@ -127,6 +128,7 @@ export const data = {
       background_img_url:
         "https://res.cloudinary.com/dwtxio5dn/image/upload/v1719069079/pkpuj8df2dnnejj9tyf3.png",
       project_link: "https://chess.gramo37.com",
+      project_date: "Feb 2024",
     },
     {
       project_name: "Online Examination Portal",
@@ -138,6 +140,7 @@ export const data = {
       background_img_url:
         "https://res.cloudinary.com/dwtxio5dn/image/upload/v1701934435/aixzgisiwig9iyyvhjfo.png",
       project_link: "https://online-examination-portal.netlify.app",
+      project_date: "Sept 2023",
     },
     {
       project_name: "Resume Builder",
@@ -149,6 +152,7 @@ export const data = {
       background_img_url:
         "https://res.cloudinary.com/dwtxio5dn/image/upload/v1704610489/irzefialwctfpjguzyt3.png",
       project_link: "https://resume-builder-3789.netlify.app",
+      project_date: "Aug 2023",
     },
     {
       project_name: "Coin Cap Dashboard",
@@ -160,6 +164,7 @@ export const data = {
       background_img_url:
         "https://res.cloudinary.com/dwtxio5dn/image/upload/v1701936185/kwqcrri6wb9tlnaxib1h.png",
       project_link: "https://h3-mart-project.netlify.app",
+      project_date: "May 2023",
     },
     {
       project_name: "Responsive Shopping Cart",
@@ -171,6 +176,7 @@ export const data = {
       background_img_url:
         "https://res.cloudinary.com/dwtxio5dn/image/upload/v1721486117/kd3knomzvdiw683xsihz.png",
       project_link: "https://monk-commerce37.netlify.app",
+      project_date: "Oct 2022",
     },
     {
       project_name: "Sudoku Solver",
@@ -181,6 +187,7 @@ export const data = {
       background_img_url:
         "https://res.cloudinary.com/dwtxio5dn/image/upload/v1701934936/ykfypjxx74oxdkv5vk0h.png",
       project_link: "https://sudoku-solver-using-backtracking.netlify.app",
+      project_date: "Aug 2022",
     },
   ],
   workExperience: [
