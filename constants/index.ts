@@ -56,7 +56,7 @@ export const data = {
       university_name:
         "Pune Vidyarthi Griha's College of Engineering (PVGCOET)",
       duration: "Mar 2017 - Apr 2021",
-      cgpa: "8.84",
+      cgpa: "8.84 CGPA",
       description: [
         "Designed and developed the auto-navigation algorithm in python for ML-based Trash collecting boat.",
         "Our BE Project won first prize among 20 teams in the Online National Project Competition.",

@@ -98,14 +98,24 @@ const SelectDropdown = ({
   onValueChange,
   categories,
   className,
+  setIsOpen,
 }: {
   onValueChange: (value) => void;
   categories: string[];
   className?: string;
+  setIsOpen?: any;
 }) => {
   return (
     <div className={cn("my-3 md:my-5 mx-5 flex items-center", className)}>
-      <Select onValueChange={onValueChange} defaultValue="all">
+      <Select
+        onValueChange={onValueChange}
+        defaultValue="all"
+        onOpenChange={(e) => {
+          setTimeout(() => {
+            setIsOpen(e);
+          }, 100);
+        }}
+      >
         <SelectTrigger className="w-[180px]" Icon={IoFilterSharp}>
           <SelectValue placeholder="Category" />
         </SelectTrigger>
@@ -125,6 +135,7 @@ export const Projects = () => {
   let categories = data.project.map((pr) => pr.category);
   categories = Array.from(new Set(categories));
   const [currentValue, setCurrentValue] = React.useState("all");
+  const [isOpen, setIsOpen] = React.useState(false);
 
   const onValueChange = (value) => {
     setCurrentValue(value);
@@ -147,19 +158,21 @@ export const Projects = () => {
         onValueChange={onValueChange}
         categories={categories}
         className="sm:hidden"
+        setIsOpen={setIsOpen}
       />
       <div className="my-4 px-5 w-[85%] sm:w-[90%] mx-auto">
         <SelectDropdown
           onValueChange={onValueChange}
           categories={categories}
           className="hidden sm:flex"
+          setIsOpen={setIsOpen}
         />
         <Carousel className="">
           <CarouselContent className="-ml-1">
             {projectData.map((item, index) => (
               <CarouselItem
                 key={index}
-                className={`pl-1 sm:basis-1/2 lg:basis-1/3`}
+                className={`pl-1 sm:basis-1/2 lg:basis-1/3 ${isOpen && "pointer-events-none"}`}
               >
                 <div className="p-1">
                   <ProjectCard {...item} />
