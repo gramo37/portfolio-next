@@ -6,11 +6,13 @@ import Footer from "../components/Portfolio/Footer";
 import Navbar from "../components/Portfolio/Navbar";
 import { Projects } from "../components/Portfolio/Projects";
 import Skills from "../components/Portfolio/Skills";
+import StarBackground from "../components/StarBackground";
 import { Toaster } from "../components/ui/toaster";
 
 export default function Page() {
   return (
     <div>
+      <StarBackground />
       <Navbar />
       <Dashboard />
       <About />
