@@ -98,7 +98,7 @@ export function ContactForm() {
     <form
       ref={formRef as any}
       onSubmit={handleSubmit}
-      className="flex flex-col p-2 max-h-[70vh] md:max-h-fit overflow-auto"
+      className="flex flex-col p-2 max-h-[70vh] md:max-h-fit sm:mx-2 md:overflow-auto"
     >
       <div className="flex flex-col md:flex-row">
         <div className="m-1 md:w-full">
@@ -187,7 +187,7 @@ export function ContactForm() {
 
 const Contact = () => {
   return (
-    <div className="p-2 pt-5 bg-muted rounded-lg m-10 md:mx-auto md:w-[825px]">
+    <div className="p-2 pt-5 bg-muted rounded-lg my-10 mx-5 md:mx-auto md:w-[725px]">
       <div className="ml-5">
         <h1 className="text-3xl md:text-4xl font-bold">Contact Me</h1>
         <p className="my-2 text-md md:text-lg italic text-muted-foreground">
