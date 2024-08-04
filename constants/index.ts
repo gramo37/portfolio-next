@@ -13,6 +13,7 @@ export const data = {
   github_link: "https://github.com/gramo37",
   resume_link:
     "https://res.cloudinary.com/dwtxio5dn/image/upload/v1719068288/jkt0tc2uu85zevlba7r5.pdf",
+  totalExperience: "3+ yrs",
   about: {
     "Frontend Development": {
       points: [
@@ -55,6 +56,7 @@ export const data = {
       university_name:
         "Pune Vidyarthi Griha's College of Engineering (PVGCOET)",
       duration: "Mar 2017 - Apr 2021",
+      cgpa: "8.84",
       description: [
         "Designed and developed the auto-navigation algorithm in python for ML-based Trash collecting boat.",
         "Our BE Project won first prize among 20 teams in the Online National Project Competition.",
@@ -108,6 +110,7 @@ export const data = {
   project: [
     {
       project_name: "Contribution in Cal.com",
+      category: "Open Source",
       description: [
         "Contributed to the open-source project Cal.com by implementing a drawer for mobile view instead of a dialog.",
         "Cal is an infrastructure for scheduling meetings for everyone.",
@@ -120,6 +123,7 @@ export const data = {
     },
     {
       project_name: "Online Chess Platform",
+      category: "Full Stack",
       description: [
         "A real-time online chess platform, containerized using Docker for simplified application deployment.",
         "Tech Stack: HTML, CSS, React, Node, websockets, turborepo",
@@ -132,6 +136,7 @@ export const data = {
     },
     {
       project_name: "Online Examination Portal",
+      category: "Full Stack",
       description: [
         "SMART EXAM - Web App where Teachers can conduct MCQ Exams",
         "Tech Stack: HTML, CSS, TailwindCSS, React, MongoDB, Node, Express",
@@ -144,6 +149,7 @@ export const data = {
     },
     {
       project_name: "Resume Builder",
+      category: "Frontend",
       description: [
         "A Web app built for students/professionals to create resumes within no time.",
         "Tech Stack: HTML, CSS, React, Redux",
@@ -156,6 +162,7 @@ export const data = {
     },
     {
       project_name: "Coin Cap Dashboard",
+      category: "Frontend",
       description: [
         "A dashboard made using HTM, CSS and React along with a custom hook for fetching data from API.",
         "Created a responsive Navbar which shows hamburger icon in small devices",
@@ -168,6 +175,7 @@ export const data = {
     },
     {
       project_name: "Responsive Shopping Cart",
+      category: "Frontend",
       description: [
         "Showcasing an admin page with responsive design for adding and deleting products, featuring drag-and-drop functionality.",
         "Includes infinite scroll for seamless product fetching and browsing and much more.",
@@ -180,6 +188,7 @@ export const data = {
     },
     {
       project_name: "Sudoku Solver",
+      category: "Frontend",
       description: [
         "A backtracking algorithm which can solve any sudoku within seconds !!",
       ],
@@ -195,6 +204,7 @@ export const data = {
       company_name: "Optanium Gmbh",
       profession: "Consultant",
       duration: "May 2023 - Present",
+      totalExperience: "1 yr 4 mon",
       description: [
         "Core team member responsible for creating features for a product named Elsa.",
         "Below are some of the recent achievements:",
@@ -210,6 +220,7 @@ export const data = {
       company_name: "Tata Consultancy Services Ltd",
       profession: "Assistant System Engineer",
       duration: "Aug 2021 - Apr 2023",
+      totalExperience: "1 yr 9 mon",
       description: [
         "- Worked as a junior engineer for a client named IndiaFirstLife Insurance on a product named Simplify.",
         "- Responsible for code analysis, debugging, and identifying areas for improvement.",
