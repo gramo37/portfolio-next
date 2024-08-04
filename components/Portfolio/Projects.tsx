@@ -10,10 +10,18 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "../ui/carousel";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "../ui/select";
 import { FaArrowCircleUp } from "react-icons/fa";
 import { FaArrowCircleDown } from "react-icons/fa";
 import { data } from "../../constants";
 import { cn } from "../../lib/utils";
+import { IoFilterSharp } from "react-icons/io5";
 
 const ProjectCard = ({
   project_name,
@@ -86,7 +94,47 @@ const ProjectCard = ({
   );
 };
 
+const SelectDropdown = ({
+  onValueChange,
+  categories,
+  className,
+}: {
+  onValueChange: (value) => void;
+  categories: string[];
+  className?: string;
+}) => {
+  return (
+    <div className={cn("my-3 md:my-5 mx-5 flex items-center", className)}>
+      <Select onValueChange={onValueChange} defaultValue="all">
+        <SelectTrigger className="w-[180px]" Icon={IoFilterSharp}>
+          <SelectValue placeholder="Category" />
+        </SelectTrigger>
+        <SelectContent className="z-50">
+          <SelectItem value="all">All</SelectItem>
+          {categories.map((category) => {
+            return <SelectItem value={category}>{category}</SelectItem>;
+          })}
+        </SelectContent>
+      </Select>
+      {/* <p className="text-lg text-muted-foreground mx-3 my-1">Projects</p> */}
+    </div>
+  );
+};
+
 export const Projects = () => {
+  let categories = data.project.map((pr) => pr.category);
+  categories = Array.from(new Set(categories));
+  const [currentValue, setCurrentValue] = React.useState("all");
+
+  const onValueChange = (value) => {
+    setCurrentValue(value);
+  };
+
+  const projectData = data.project.filter((project) => {
+    if (currentValue === "all") return true;
+    return project.category === currentValue;
+  });
+
   return (
     <div id="projects">
       <h1 className="text-4xl md:text-5xl font-bold mb-3 sm:text-center md:my-5 mx-5 mt-5">
@@ -95,13 +143,23 @@ export const Projects = () => {
       <p className="text-lg text-muted-foreground italic mx-5 sm:text-center">
         Turning Ideas to Reality
       </p>
+      <SelectDropdown
+        onValueChange={onValueChange}
+        categories={categories}
+        className="sm:hidden"
+      />
       <div className="my-4 px-5 w-[85%] sm:w-[90%] mx-auto">
+        <SelectDropdown
+          onValueChange={onValueChange}
+          categories={categories}
+          className="hidden sm:flex"
+        />
         <Carousel className="">
           <CarouselContent className="-ml-1">
-            {data.project.map((item, index) => (
+            {projectData.map((item, index) => (
               <CarouselItem
                 key={index}
-                className="pl-1 sm:basis-1/2 lg:basis-1/3"
+                className={`pl-1 sm:basis-1/2 lg:basis-1/3`}
               >
                 <div className="p-1">
                   <ProjectCard {...item} />

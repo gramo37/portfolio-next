@@ -19,15 +19,7 @@ export default function ThemeButton({
   className?: string;
   onClickFunc?: () => void;
 }) {
-  const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
-
-  useEffect(() => {
-    setTheme("dark");
-    setMounted(true);
-  }, []);
-
-  if (!mounted) return null;
 
   const toggleTheme = () => {
     if (theme === "light") setTheme("dark");
@@ -38,7 +30,7 @@ export default function ThemeButton({
   if (type === "text") {
     return (
       <div className={className} onClick={toggleTheme}>
-        {theme === "light" ? "Light Mode" : "Dark Mode"}
+        {theme !== "light" ? "Light Mode" : "Dark Mode"}
       </div>
     );
   }
@@ -47,10 +39,10 @@ export default function ThemeButton({
     <TooltipProvider>
       <Tooltip>
         <TooltipTrigger onClick={toggleTheme}>
-          {theme === "light" ? <MdLightMode /> : <MdDarkMode />}
+          {theme !== "light" ? <MdLightMode /> : <MdDarkMode />}
         </TooltipTrigger>
         <TooltipContent>
-          <p>{theme === "light" ? "Light Mode" : "Dark Mode"}</p>
+          <p>{theme !== "light" ? "Light Mode" : "Dark Mode"}</p>
         </TooltipContent>
       </Tooltip>
     </TooltipProvider>

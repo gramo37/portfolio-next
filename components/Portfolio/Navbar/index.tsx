@@ -11,17 +11,26 @@ import {
 import { GiHamburgerMenu } from "react-icons/gi";
 import Link from "next/link";
 import { navOptions } from "../../../constants";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import useViewportHeight from "../../../hooks/useViewPortHeight";
 import useDebouncedScroll from "../../../hooks/useDebounceedScroll";
 import { cn } from "../../../lib/utils";
+import { useTheme } from "next-themes";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const router = useRouter();
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+
+  const [mounted, setMounted] = useState(false);
+  const { theme, setTheme } = useTheme();
+
+  useEffect(() => {
+    setTheme("dark");
+    setMounted(true);
+  }, []);
 
   useViewportHeight();
   useDebouncedScroll((scrollY) => {
@@ -34,6 +43,8 @@ export default function Navbar() {
     }
     setLastScrollY(scrollY);
   }, 10);
+
+  if (!mounted) return null;
 
   return (
     <div
