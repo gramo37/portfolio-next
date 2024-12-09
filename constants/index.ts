@@ -201,10 +201,22 @@ export const data = {
   ],
   workExperience: [
     {
+      company_name: "Jeeva",
+      profession: "Solutions Architect",
+      duration: "Nov 2023 - Present",
+      totalExperience: "1 mon",
+      description: [
+        "Responsible for bug fixing, adding feature requests, enhancements and new development.",
+        "Expertise in building user interface/SPA with React JS and Javascript.",
+        "Experienced in using Trello and following the SCRUM development process",
+      ],
+      color: "rgb(21 128 61 / 1)",
+    },
+    {
       company_name: "Optanium Gmbh",
       profession: "Consultant",
       duration: "May 2023 - Present",
-      totalExperience: "1 yr 4 mon",
+      totalExperience: "1 yr 6 mon",
       description: [
         "Core team member responsible for creating features for a product named Elsa.",
         "Below are some of the recent achievements:",
