@@ -36,10 +36,15 @@ export default function RootLayout({
           {`!function () {var jeeva = window.jeeva = window.jeeva || [];if (jeeva.invoked) return;jeeva.invoked = true;jeeva.methods = ['identify', 'collect'];jeeva.factory = function (method) {return function () {var args = Array.prototype.slice.call(arguments);args.unshift(method);jeeva.push(args);return jeeva;};};for (var i = 0; i < jeeva.methods.length; i++) {var key = jeeva.methods[i];jeeva[key] = jeeva.factory(key);}jeeva.load = function (key) {var script = document.createElement('script');script.type = 'text/javascript';script.async = true;script.src = 'https://r2d2-inbound-js-store-production.s3.us-east-1.amazonaws.com/' + key + '/jeeva.js';var first = document.getElementsByTagName('script')[0];first.parentNode.insertBefore(script, first);};jeeva.SNIPPET_VERSION = '1.0.';jeeva.load('22c49741-599e-4e56-bd2f-7aafc4ccb616');}();`}
         </Script>
         <Script
+          src="https://ariaibot.netlify.app/chatBot.js"
+          // allow="geolocation"
+          data-business-id="25"
+        ></Script>
+        {/* <Script
           src="https://b6n664e32e.execute-api.us-east-1.amazonaws.com/asset/download/js/chat"
           data-config="https://b6n664e32e.execute-api.us-east-1.amazonaws.com/asset/download/config/2cd909b9-965c-444b-858d-70f86534f456"
           defer
-        ></Script>
+        ></Script> */}
       </head>
       <body
         className={cn(
