@@ -28,7 +28,7 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
         <script
-          src="https://ariaibot.netlify.app/chatBot.js"
+          src="https://ariaibot.netlify.appchatBot.js"
           data-business-id="25"
           defer
         ></script>
