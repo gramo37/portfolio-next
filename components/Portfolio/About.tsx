@@ -58,7 +58,7 @@ export const About = () => {
             })}
           </div>
           <div className="border rounded-md w-fit p-2 bg-primary-foreground ml-5">
-            <p className="text-4xl md:text-5xl text-muted-foreground">
+            <div className="text-4xl md:text-5xl text-muted-foreground">
               {Object.keys(data.about).map((t) => {
                 return (
                   <div
@@ -70,7 +70,7 @@ export const About = () => {
                   </div>
                 );
               })}
-            </p>
+            </div>
             <p className="ml-3 italic">Lines of code</p>
           </div>
         </div>
