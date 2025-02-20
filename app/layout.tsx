@@ -30,7 +30,6 @@ export default function RootLayout({
         <script
           src="https://ariaibot.netlify.app/chatBot.js"
           data-business-id="25"
-          defer
         ></script>
         <Script
           id="jeeva-snippet"
