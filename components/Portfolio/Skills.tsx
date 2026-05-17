@@ -1,41 +1,78 @@
 "use client";
 
-import * as React from "react";
-
-import { Progress } from "../ui/progress";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 import { data } from "../../constants";
+import SectionHeading from "./SectionHeading";
+import { fadeInUp, staggerContainer, viewportOnce } from "../../lib/motion";
 
-const Skill = ({ percent }) => {
-  const [progress, setProgress] = React.useState(13);
+function AnimatedSkill({
+  skill_name,
+  proficiency,
+}: {
+  skill_name: string;
+  proficiency: number;
+}) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-40px" });
 
-  React.useEffect(() => {
-    const timer = setTimeout(() => setProgress(percent), 500);
-    return () => clearTimeout(timer);
-  }, []);
-
-  return <Progress value={progress} className="w-[90%]" />;
-};
+  return (
+    <motion.div ref={ref} variants={fadeInUp} className="space-y-2">
+      <div className="flex justify-between items-center">
+        <span className="text-sm font-medium text-foreground">
+          {skill_name}
+        </span>
+        <motion.span
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : {}}
+          transition={{ delay: 0.5 }}
+          className="text-xs text-muted-foreground"
+        >
+          {proficiency}%
+        </motion.span>
+      </div>
+      <div className="relative h-2 rounded-full bg-muted overflow-hidden">
+        <motion.div
+          className="absolute inset-y-0 left-0 rounded-full bg-primary"
+          initial={{ width: 0 }}
+          animate={isInView ? { width: `${proficiency}%` } : { width: 0 }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
+        />
+      </div>
+    </motion.div>
+  );
+}
 
 const Skills = () => {
   return (
-    <div className="p-4 mx-3 pb-10" id="skills">
-      <div className="md:my-5 w-fit mb-5">
-        <p className="text-2xl text-muted-foreground italic">Area Of</p>
-        <h1 className="text-4xl md:text-5xl font-bold text-secondary">
-          Expertise
-        </h1>
-      </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 ml-5">
-        {data.skills.map(({ skill_name, proficiency }) => {
-          return (
-            <div key={skill_name}>
-              <h1 className="text-xl font-bold">{skill_name}</h1>
-              <Skill percent={proficiency} />
-            </div>
-          );
-        })}
-      </div>
-    </div>
+    <section id="skills" className="section-padding bg-muted/30">
+      <motion.div
+        className="container-narrow"
+        initial="hidden"
+        whileInView="visible"
+        viewport={viewportOnce}
+        variants={staggerContainer}
+      >
+        <SectionHeading
+          label="Skills"
+          title="Technical expertise"
+          subtitle="Core technologies I use to design, build, and ship production-ready applications."
+        />
+
+        <motion.div
+          variants={staggerContainer}
+          className="grid sm:grid-cols-2 gap-x-12 gap-y-6 max-w-3xl"
+        >
+          {data.skills.map(({ skill_name, proficiency }) => (
+            <AnimatedSkill
+              key={skill_name}
+              skill_name={skill_name}
+              proficiency={proficiency}
+            />
+          ))}
+        </motion.div>
+      </motion.div>
+    </section>
   );
 };
 

@@ -1,6 +1,6 @@
 import { cn } from "../lib/utils";
 import "./globals.css";
-import { Inter as FontSans } from "next/font/google";
+import { DM_Sans as FontSans } from "next/font/google";
 import { ThemeProvider } from "../components/theme-provider";
 import Script from "next/script";
 

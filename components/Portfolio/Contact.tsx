@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useRef, useState } from "react";
+import { motion } from "framer-motion";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { Textarea } from "../ui/textarea";
@@ -9,6 +10,9 @@ import emailjs from "@emailjs/browser";
 import { useFormik } from "formik";
 import { useToast } from "../ui/use-toast";
 import { data } from "../../constants";
+import SectionHeading from "./SectionHeading";
+import { fadeInUp, staggerContainer, viewportOnce } from "../../lib/motion";
+import { Mail, Phone } from "lucide-react";
 
 const contactMeSchema = Yup.object({
   firstname: Yup.string()
@@ -41,11 +45,11 @@ const initialValues = {
 };
 
 export function ContactForm() {
-  const formRef: any = useRef();
+  const formRef = useRef<HTMLFormElement>(null);
   const { toast } = useToast();
-
   const [loading, setLoading] = useState(false);
   const [sendMail, setSendMail] = useState(true);
+
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
     useFormik({
       initialValues,
@@ -61,12 +65,12 @@ export function ContactForm() {
         }
         resetForm({ values: initialValues });
         setLoading(true);
-        if (formRef?.current)
+        if (formRef.current)
           emailjs
             .sendForm(
               "service_npzjtpg",
               "template_v1582qq",
-              formRef?.current,
+              formRef.current,
               "uF6OeJEqNkVC7B5mC",
             )
             .then(
@@ -78,131 +82,148 @@ export function ContactForm() {
                   description: "Your message has been sent.",
                 });
                 setSendMail(false);
-                setTimeout(
-                  () => {
-                    setSendMail(true);
-                  },
-                  60 * 10 * 1000,
-                );
+                setTimeout(() => setSendMail(true), 60 * 10 * 1000);
               },
               () => {
                 setLoading(false);
                 alert("Something went wrong");
               },
             )
-            .catch((error: any) => console.log(error));
+            .catch((error) => console.log(error));
       },
     });
 
   return (
-    <form
-      ref={formRef as any}
-      onSubmit={handleSubmit}
-      className="flex flex-col p-2 max-h-[70vh] md:max-h-fit sm:mx-2 md:overflow-auto"
-    >
-      <div className="flex flex-col md:flex-row">
-        <div className="m-1 md:w-full">
+    <form ref={formRef} onSubmit={handleSubmit} className="space-y-4">
+      <div className="grid sm:grid-cols-2 gap-4">
+        <div>
           <Input
             id="firstname"
             name="firstname"
-            placeholder="Your firstname"
+            placeholder="First name"
             value={values.firstname}
             onChange={handleChange}
             onBlur={handleBlur}
           />
-          {errors.firstname && touched.firstname ? (
-            <p className="text-destructive m-0">{errors.firstname}</p>
-          ) : null}
+          {errors.firstname && touched.firstname && (
+            <p className="text-destructive text-xs mt-1">{errors.firstname}</p>
+          )}
         </div>
-        <div className="m-1 md:w-full">
+        <div>
           <Input
             id="lastname"
             name="lastname"
-            placeholder="Your lastname"
+            placeholder="Last name"
             value={values.lastname}
             onChange={handleChange}
             onBlur={handleBlur}
           />
-          {errors.lastname && touched.lastname ? (
-            <p className="text-destructive m-0">{errors.lastname}</p>
-          ) : null}
+          {errors.lastname && touched.lastname && (
+            <p className="text-destructive text-xs mt-1">{errors.lastname}</p>
+          )}
         </div>
       </div>
-      <div className="flex md:p-1">
+
+      <div>
         <Input
-          className="m-1"
           id="email"
           name="email"
-          placeholder="Your Email address"
+          placeholder="Email address"
           type="email"
           value={values.email}
           onChange={handleChange}
           onBlur={handleBlur}
         />
-        <Input className="opacity-0 hidden md:block" />
+        {errors.email && touched.email && (
+          <p className="text-destructive text-xs mt-1">{errors.email}</p>
+        )}
       </div>
-      {errors.email && touched.email ? (
-        <p className="text-destructive m-0">{errors.email}</p>
-      ) : null}
-      <div className="flex">
+
+      <div>
         <Input
-          className="m-1"
           id="subject"
           name="subject"
-          placeholder="Your subject of this message"
-          type="text"
+          placeholder="Subject"
           value={values.subject}
           onChange={handleChange}
           onBlur={handleBlur}
         />
+        {errors.subject && touched.subject && (
+          <p className="text-destructive text-xs mt-1">{errors.subject}</p>
+        )}
       </div>
-      {errors.subject && touched.subject ? (
-        <p className="text-destructive m-0">{errors.subject}</p>
-      ) : null}
-      <div className="flex">
+
+      <div>
         <Textarea
-          className="m-1 h-[200px]"
           id="message"
           name="message"
-          placeholder="Type your message here"
+          placeholder="Your message"
+          className="min-h-[140px] resize-none"
           value={values.message}
           onChange={handleChange}
           onBlur={handleBlur}
         />
+        {errors.message && touched.message && (
+          <p className="text-destructive text-xs mt-1">{errors.message}</p>
+        )}
       </div>
-      {errors.message && touched.message ? (
-        <p className="text-destructive m-0">{errors.message}</p>
-      ) : null}
-      <div className="m-2 md:mx-auto my-2">
-        <Button
-          type="submit"
-          className="text-lg text-secondary-foreground bg-secondary"
-        >
-          {loading ? "Loading..." : "Send Message"}
-        </Button>
-      </div>
+
+      <Button type="submit" className="w-full sm:w-auto" disabled={loading}>
+        {loading ? "Sending..." : "Send message"}
+      </Button>
     </form>
   );
 }
 
 const Contact = () => {
   return (
-    <div className="p-2 pt-5 bg-muted rounded-lg my-10 mx-5 md:mx-auto md:w-[725px]">
-      <div className="ml-5">
-        <h1 className="text-3xl md:text-4xl font-bold">Contact Me</h1>
-        <p className="my-2 text-md md:text-lg italic text-muted-foreground">
-          Don't like forms? Send me an{" "}
-          <a
-            className="text-secondary underline cursor-pointer font-bold not-italic"
-            href={`mailto:${data.email}`}
+    <section id="contact" className="section-padding border-t border-border">
+      <motion.div
+        className="container-narrow"
+        initial="hidden"
+        whileInView="visible"
+        viewport={viewportOnce}
+        variants={staggerContainer}
+      >
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
+          <motion.div variants={fadeInUp}>
+            <SectionHeading
+              label="Contact"
+              title="Let's work together"
+              subtitle="Open to full-time roles, contract work, and interesting collaborations. Reach out and I'll respond within 48 hours."
+            />
+
+            <div className="mt-8 space-y-4">
+              <a
+                href={`mailto:${data.email}`}
+                className="flex items-center gap-3 text-sm text-muted-foreground hover:text-foreground transition-colors"
+              >
+                <span className="flex h-10 w-10 items-center justify-center rounded-md border border-border">
+                  <Mail className="h-4 w-4 text-primary" />
+                </span>
+                {data.email}
+              </a>
+              <a
+                href={`tel:${data.phone}`}
+                className="flex items-center gap-3 text-sm text-muted-foreground hover:text-foreground transition-colors"
+              >
+                <span className="flex h-10 w-10 items-center justify-center rounded-md border border-border">
+                  <Phone className="h-4 w-4 text-primary" />
+                </span>
+                {data.phone}
+              </a>
+            </div>
+          </motion.div>
+
+          <motion.div
+            variants={fadeInUp}
+            className="rounded-xl border border-border bg-card p-6 md:p-8"
           >
-            email
-          </a>
-          .
-        </p>
-      </div>
-      <ContactForm />
-    </div>
+            <ContactForm />
+          </motion.div>
+        </div>
+      </motion.div>
+    </section>
   );
 };
 

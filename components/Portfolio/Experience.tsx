@@ -1,107 +1,130 @@
-import { GoDotFill } from "react-icons/go";
+"use client";
+
+import { motion } from "framer-motion";
 import { data } from "../../constants";
+import SectionHeading from "./SectionHeading";
+import ScrollReveal from "./ScrollReveal";
+import { fadeInUp, scaleIn, staggerContainer } from "../../lib/motion";
+
+interface TimelineItemProps {
+  title: string;
+  subtitle: string;
+  duration: string;
+  meta?: string;
+  description: string[];
+}
+
+function TimelineItem({
+  title,
+  subtitle,
+  duration,
+  meta,
+  description,
+}: TimelineItemProps) {
+  return (
+    <motion.div
+      variants={fadeInUp}
+      className="relative pl-6 border-l-2 border-border"
+    >
+      <motion.div
+        variants={scaleIn}
+        className="absolute -left-[9px] top-1 h-4 w-4 rounded-full bg-primary ring-4 ring-background"
+      />
+
+      <motion.div className="rounded-xl border border-border bg-card p-5 md:p-6 transition-shadow hover:shadow-md">
+        <div className="flex flex-wrap items-baseline justify-between gap-2 mb-1">
+          <h3 className="text-lg font-semibold text-foreground">{title}</h3>
+          <span className="text-xs text-muted-foreground">{duration}</span>
+        </div>
+        <h4 className="font-medium text-foreground">{subtitle}</h4>
+        {meta && <p className="text-sm text-primary mt-0.5">{meta}</p>}
+        <ul className="mt-4 space-y-2">
+          {description.map((point, i) => (
+            <li
+              key={i}
+              className="text-sm text-muted-foreground leading-relaxed flex gap-2"
+            >
+              <span className="text-primary shrink-0">—</span>
+              <span>{point.replace(/^-\s*/, "")}</span>
+            </li>
+          ))}
+        </ul>
+      </motion.div>
+    </motion.div>
+  );
+}
 
 const Experience = () => {
   return (
-    <div id="experience">
-      <h1 className="text-4xl md:text-5xl sm:text-center font-bold my-5 mb-0 sm:mb-7 md:mb-7 md:my-3 mx-5">
-        Work Experience{" "}
-        <span className="text-lg md:text-xl text-muted-foreground italic sm:text-center hidden sm:inline">
-          ( {data?.totalExperience} )
-        </span>
-      </h1>
-      <p className="text-lg md:text-xl text-muted-foreground italic sm:hidden ml-4">
-        ( {data?.totalExperience} )
-      </p>
-      {data.workExperience.map((item, index) => {
-        return (
-          <div
-            key={index}
-            className="flex px-2 my-1 justify-center items-start"
+    <section id="experience" className="section-padding bg-muted/30">
+      <ScrollReveal className="container-narrow">
+        <SectionHeading
+          label="Experience"
+          title="Professional journey"
+          subtitle={`${data.totalExperience} building products for startups and enterprise clients.`}
+        />
+
+        <motion.div variants={staggerContainer} className="space-y-8">
+          {data.workExperience.map((item, index) => (
+            <TimelineItem
+              key={index}
+              title={item.company_name}
+              subtitle={item.profession}
+              duration={item.duration}
+              meta={item.totalExperience}
+              description={item.description}
+            />
+          ))}
+        </motion.div>
+
+        <motion.div variants={fadeInUp} className="mt-20">
+          <SectionHeading label="Education" title="Academic background" />
+          <motion.div
+            variants={staggerContainer}
+            className="grid md:grid-cols-2 gap-6"
           >
-            <div className="w-[50vw] ml-4 text-left md:text-right mr-4">
-              <h1 className="text-lg md:text-2xl font-bold">
-                {item.company_name}
-              </h1>
-              <p className="italic text-muted-foreground">{item.duration}</p>
-            </div>
-            <div className="flex">
-              <div className="mr-3 flex flex-col">
-                <div
-                  className="text-4xl border-4 border-dashed rounded-full"
-                  style={{
-                    color: item.color,
-                  }}
-                >
-                  <GoDotFill />
-                </div>
-                <div className="border-r-4 m-auto w-1 border-dashed mt-1 h-full" />
-              </div>
-              <div className="w-[50vw]">
-                <h1 className="text-2xl font-bold">{item.profession}</h1>
-                <p className="text-sm text-muted-foreground italic">
-                  {item?.totalExperience}
+            {data.education.map((item, index) => (
+              <motion.div
+                key={index}
+                variants={fadeInUp}
+                whileHover={{ y: -2 }}
+                transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                className="rounded-xl border border-border bg-card p-6"
+              >
+                <motion.div className="flex items-start justify-between gap-4 mb-4">
+                  <div>
+                    <h3 className="font-semibold text-foreground">
+                      {item.degree_name}
+                    </h3>
+                    <p className="text-sm text-muted-foreground mt-1">
+                      {item.university_name}
+                    </p>
+                  </div>
+                  {item.cgpa && (
+                    <span className="text-sm font-medium text-primary shrink-0">
+                      {item.cgpa}
+                    </span>
+                  )}
+                </motion.div>
+                <p className="text-xs text-muted-foreground mb-4">
+                  {item.duration}
                 </p>
-                <div className="w-fit lg:w-[400px] mr-4 md:pl-8">
-                  {item.description.map((point, i) => {
-                    return (
-                      <p key={i} className="my-4">
-                        {point}
-                      </p>
-                    );
-                  })}
-                </div>
-              </div>
-            </div>
-          </div>
-        );
-      })}
-      <h1 className="text-4xl md:text-5xl sm:text-center font-bold my-5 mb-7 md:my-3 mx-5">
-        Education
-      </h1>
-      {data.education.map((item, i) => {
-        return (
-          <div key={i} className="flex px-2 my-1 justify-center items-start">
-            <div className="w-[50vw] ml-4 text-left md:text-right mr-4">
-              <h1 className="text-lg md:text-2xl font-bold">
-                {item.degree_name}
-              </h1>
-              <p className="italic text-muted-foreground">{item.duration}</p>
-            </div>
-            <div className="flex">
-              <div className="mr-3 flex flex-col">
-                <div
-                  className="text-4xl border-4 border-dashed rounded-full"
-                  style={{
-                    color: item.color,
-                  }}
-                >
-                  <GoDotFill />
-                </div>
-                <div className="border-r-4 m-auto w-1 border-dashed mt-1 h-full" />
-              </div>
-              <div className="w-[50vw]">
-                <h1 className="text-xl w-2/3 font-bold">
-                  {item.university_name}
-                </h1>
-                <p className="text-sm text-muted-foreground italic">
-                  {item?.cgpa}
-                </p>
-                <div className="w-fit lg:w-[400px] mr-4 md:pl-8">
-                  {item.description.map((point, i) => {
-                    return (
-                      <p key={i} className="my-4">
-                        {point}
-                      </p>
-                    );
-                  })}
-                </div>
-              </div>
-            </div>
-          </div>
-        );
-      })}
-    </div>
+                <ul className="space-y-2">
+                  {item.description.map((point, i) => (
+                    <li
+                      key={i}
+                      className="text-sm text-muted-foreground leading-relaxed"
+                    >
+                      {point}
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+            ))}
+          </motion.div>
+        </motion.div>
+      </ScrollReveal>
+    </section>
   );
 };
 

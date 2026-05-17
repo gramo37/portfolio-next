@@ -1,15 +1,10 @@
 "use client";
 
 import * as React from "react";
-
-import { Card, CardContent } from "../ui/card";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "../ui/carousel";
+import Image from "next/image";
+import Link from "next/link";
+import { motion } from "framer-motion";
+import { ExternalLink } from "lucide-react";
 import {
   Select,
   SelectContent,
@@ -17,173 +12,131 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../ui/select";
-import { FaArrowCircleUp } from "react-icons/fa";
-import { FaArrowCircleDown } from "react-icons/fa";
+import { Badge } from "../ui/badge";
 import { data } from "../../constants";
-import { cn } from "../../lib/utils";
-import { IoFilterSharp } from "react-icons/io5";
+import ScrollReveal from "./ScrollReveal";
+import { fadeInUp, staggerContainer } from "../../lib/motion";
 
-const ProjectCard = ({
+interface Project {
+  project_name: string;
+  category: string;
+  description: string[];
+  background_img_url: string;
+  project_link: string;
+  project_date: string;
+}
+
+function ProjectCard({
   project_name,
-  project_link,
-  background_img_url,
+  category,
   description,
+  background_img_url,
+  project_link,
   project_date,
-}) => {
-  const [showContent, setShowContent] = React.useState(false);
-
-  const clickHandler = (e) => {
-    window.open(project_link, "_blank");
-  };
-
+}: Project) {
   return (
-    <Card
-      className="relative rounded-lg"
-      onMouseEnter={() => setShowContent(true)}
-      onMouseLeave={() => setShowContent(false)}
-      onClick={clickHandler}
+    <motion.article
+      variants={fadeInUp}
+      whileHover={{ y: -4 }}
+      transition={{ type: "spring", stiffness: 400, damping: 25 }}
+      className="group flex flex-col overflow-hidden rounded-xl border border-border bg-card"
     >
-      <CardContent
-        className="flex aspect-square p-6 bg-cover bg-center bg-no-repeat cursor-pointer rounded-lg"
-        style={{
-          backgroundImage: `url(${background_img_url})`,
-        }}
-      >
-        <div className="absolute bottom-0 mb-5 text-white text-5xl z-30 text-center lg:hidden">
-          <button
-            onClick={(e) => {
-              if (!showContent) setShowContent(true);
-              else if (showContent) setShowContent(false);
-              e.preventDefault();
-              e.stopPropagation();
-            }}
-            className="animate-bounce shadow-lg shadow-white rounded-full border"
-          >
-            {showContent ? <FaArrowCircleDown /> : <FaArrowCircleUp />}
-          </button>
-        </div>
-        <div className="absolute inset-0 bg-gray-900 bg-opacity-60 z-20 rounded-lg">
-          <div className="text-white relative  m-5">
-            <h1 className="text-lg font-bold">{project_name}</h1>
-            <p className="text-md">{project_date}</p>
-          </div>
-        </div>
-        <div
-          className={cn(
-            "absolute inset-0 bg-gray-900 bg-opacity-100 z-20 p-4 transition-transform rounded-lg",
-            `${
-              showContent
-                ? "translate-y-0 opacity-100"
-                : "translate-y-[100%] opacity-0"
-            }`,
-          )}
-        >
-          <div className="text-white relative border h-full w-full">
-            <div
-              className={`flex flex-col gap-4 justify-start items-center border p-4 h-full overflow-auto`}
-            >
-              <h1 className="text-lg font-bold">{project_name}</h1>
-              {description.map((item, index) => {
-                return <p key={index}>{item}</p>;
-              })}
-            </div>
-          </div>
-        </div>
-      </CardContent>
-    </Card>
-  );
-};
+      <div className="relative aspect-video overflow-hidden bg-muted">
+        <Image
+          src={background_img_url}
+          alt={project_name}
+          fill
+          className="object-cover transition-transform duration-500 group-hover:scale-105"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+      </div>
 
-const SelectDropdown = ({
-  onValueChange,
-  categories,
-  className,
-  setIsOpen,
-}: {
-  onValueChange: (value) => void;
-  categories: string[];
-  className?: string;
-  setIsOpen?: any;
-}) => {
-  return (
-    <div className={cn("my-3 md:my-5 mx-5 flex items-center", className)}>
-      <Select
-        onValueChange={onValueChange}
-        defaultValue="all"
-        onOpenChange={(e) => {
-          setTimeout(() => {
-            setIsOpen(e);
-          }, 100);
-        }}
-      >
-        <SelectTrigger className="w-[180px]" Icon={IoFilterSharp}>
-          <SelectValue placeholder="Category" />
-        </SelectTrigger>
-        <SelectContent className="z-50">
-          <SelectItem value="all">All</SelectItem>
-          {categories.map((category) => {
-            return <SelectItem value={category}>{category}</SelectItem>;
-          })}
-        </SelectContent>
-      </Select>
-      {/* <p className="text-lg text-muted-foreground mx-3 my-1">Projects</p> */}
-    </div>
+      <div className="flex flex-1 flex-col p-5">
+        <div className="flex items-start justify-between gap-3 mb-3">
+          <div>
+            <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors">
+              {project_name}
+            </h3>
+            <p className="text-xs text-muted-foreground mt-1">{project_date}</p>
+          </div>
+          <Badge variant="secondary" className="shrink-0 text-xs">
+            {category}
+          </Badge>
+        </div>
+
+        <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2 flex-1">
+          {description[0]}
+        </p>
+
+        <Link
+          href={project_link}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:underline"
+        >
+          View project
+          <ExternalLink className="h-3.5 w-3.5" />
+        </Link>
+      </div>
+    </motion.article>
   );
-};
+}
 
 export const Projects = () => {
-  let categories = data.project.map((pr) => pr.category);
-  categories = Array.from(new Set(categories));
-  const [currentValue, setCurrentValue] = React.useState("all");
-  const [isOpen, setIsOpen] = React.useState(false);
+  const categories = Array.from(new Set(data.project.map((pr) => pr.category)));
+  const [filter, setFilter] = React.useState("all");
 
-  const onValueChange = (value) => {
-    setCurrentValue(value);
-  };
-
-  const projectData = data.project.filter((project) => {
-    if (currentValue === "all") return true;
-    return project.category === currentValue;
-  });
+  const filtered =
+    filter === "all"
+      ? data.project
+      : data.project.filter((p) => p.category === filter);
 
   return (
-    <div id="projects">
-      <h1 className="text-4xl md:text-5xl font-bold mb-3 sm:text-center md:my-5 mx-5 mt-5">
-        My Latest Works
-      </h1>
-      <p className="text-lg text-muted-foreground italic mx-5 sm:text-center">
-        Turning Ideas to Reality
-      </p>
-      <SelectDropdown
-        onValueChange={onValueChange}
-        categories={categories}
-        className="sm:hidden"
-        setIsOpen={setIsOpen}
-      />
-      <div className="my-4 px-5 w-[85%] sm:w-[90%] mx-auto">
-        <SelectDropdown
-          onValueChange={onValueChange}
-          categories={categories}
-          className="hidden sm:flex"
-          setIsOpen={setIsOpen}
-        />
-        <Carousel className="">
-          <CarouselContent className="-ml-1">
-            {projectData.map((item, index) => (
-              <CarouselItem
-                key={index}
-                className={`pl-1 sm:basis-1/2 lg:basis-1/3 ${isOpen && "pointer-events-none"}`}
-              >
-                <div className="p-1">
-                  <ProjectCard {...item} />
-                </div>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-          <CarouselPrevious />
-          <CarouselNext />
-        </Carousel>
-      </div>
-    </div>
+    <section id="projects" className="section-padding border-t border-border">
+      <ScrollReveal className="container-narrow">
+        <motion.div variants={fadeInUp} className="mb-10">
+          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6">
+            <div>
+              <p className="text-sm font-medium uppercase tracking-widest text-primary mb-2">
+                Projects
+              </p>
+              <h2 className="text-3xl md:text-4xl font-semibold tracking-tight">
+                Selected work
+              </h2>
+              <p className="mt-3 text-muted-foreground max-w-2xl text-base md:text-lg">
+                A sample of products and contributions across full-stack,
+                frontend, and open source.
+              </p>
+            </div>
+            <Select value={filter} onValueChange={setFilter}>
+              <SelectTrigger className="w-[180px] shrink-0">
+                <SelectValue placeholder="Filter by category" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">All categories</SelectItem>
+                {categories.map((category) => (
+                  <SelectItem key={category} value={category}>
+                    {category}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+        </motion.div>
+
+        <motion.div
+          variants={staggerContainer}
+          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
+        >
+          {filtered.map((project, index) => (
+            <ProjectCard
+              key={`${project.project_name}-${index}`}
+              {...project}
+            />
+          ))}
+        </motion.div>
+      </ScrollReveal>
+    </section>
   );
 };

@@ -1,38 +1,65 @@
-import React from "react";
-import { data, navOptions } from "../../constants";
-import Link from "next/link";
+"use client";
 
-const Footer: React.FC = () => {
+import Link from "next/link";
+import { motion } from "framer-motion";
+import { data, navOptions } from "../../constants";
+
+const Footer = () => {
+  const year = new Date().getFullYear();
+
   return (
-    <footer className="bg-secondary text-secondary-foreground py-6">
-      <div className="container mx-auto flex flex-col md:flex-row justify-between items-center">
-        <div className="flex flex-col md:flex-row items-center">
-          <nav className="flex space-x-4 mt-4 md:mt-0 font-bold cursor-pointer">
-            {navOptions?.map((item, i) => {
-              return (
-                <Link key={i} href={item.link}>
-                  <p className="hover:text-gray-400">{item.title}</p>
-                </Link>
-              );
-            })}
+    <motion.footer
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5 }}
+      className="border-t border-border bg-muted/30"
+    >
+      <div className="container-narrow py-10">
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.4 }}
+          className="flex flex-col md:flex-row md:items-center md:justify-between gap-6"
+        >
+          <div>
+            <p className="font-semibold text-foreground">{data.name}</p>
+            <p className="text-sm text-muted-foreground mt-1">
+              {data.profession}
+            </p>
+          </div>
+
+          <nav className="flex flex-wrap gap-6">
+            {navOptions.map((item) => (
+              <Link
+                key={item.title}
+                href={item.link}
+                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+              >
+                {item.title}
+              </Link>
+            ))}
           </nav>
-        </div>
-        <div className="mt-4 md:mt-0">
-          <p>
-            Email:{" "}
-            <a href={`mailto:${data.email}`} className="hover:text-gray-400">
+
+          <div className="text-sm text-muted-foreground">
+            <a
+              href={`mailto:${data.email}`}
+              className="hover:text-foreground transition-colors"
+            >
               {data.email}
             </a>
-          </p>
+          </div>
+        </motion.div>
+
+        <div className="mt-8 pt-6 border-t border-border flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-xs text-muted-foreground">
           <p>
-            Phone:{" "}
-            <a href={`tel:${data.phone}`} className="hover:text-gray-400">
-              {data.phone}
-            </a>
+            © {year} {data.name}. All rights reserved.
           </p>
+          <p>Built with Next.js & Tailwind CSS</p>
         </div>
       </div>
-    </footer>
+    </motion.footer>
   );
 };
 

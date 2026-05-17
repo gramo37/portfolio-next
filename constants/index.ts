@@ -201,9 +201,23 @@ export const data = {
   ],
   workExperience: [
     {
+      company_name: "Innodata",
+      profession: "Software Engineer",
+      duration: "May 2025 - Present",
+      totalExperience: "7 mon",
+      description: [
+        "Develop features for Innodata's LLM testing and evaluation platform, supporting prompt workflows, human annotation, and quality assurance across model releases.",
+        "Built dynamic tagging for prompt-writing projects: users define a JSON schema, and the app auto-generates the corresponding tagging form—reducing manual UI setup and keeping captures consistent.",
+        "Extended the same schema-driven form generation to human-annotation projects, unifying the annotation experience across project types.",
+        "Contributed to the V2 release of the LLM testing tool, improving core flows and architecture for faster delivery of new evaluation features.",
+        "Tech stack: Next.js, TypeScript, JavaScript, Node.js, Tailwind CSS, HTML/CSS.",
+      ],
+      color: "rgb(21 128 61 / 1)",
+    },
+    {
       company_name: "Jeeva",
       profession: "Solutions Architect",
-      duration: "Nov 2023 - Present",
+      duration: "Oct 2024 - May 2025",
       totalExperience: "3 mon",
       description: [
         "Developed scalable frontend features with React and TypeScript, and built APIs using Python and FastAPI.",
@@ -218,7 +232,7 @@ export const data = {
     {
       company_name: "Optanium Gmbh",
       profession: "Consultant",
-      duration: "May 2023 - Present",
+      duration: "May 2023 - Oct 2024",
       totalExperience: "1 yr 6 mon",
       description: [
         "Core team member developing features for ELSA using React, TypeScript, Node, and Postgres.",
@@ -250,24 +264,10 @@ export const data = {
 export const professions = ["Frontend", "Backend", "FullStack"];
 
 export const navOptions = [
-  {
-    title: "Home",
-    link: "#home",
-  },
-  {
-    title: "About",
-    link: "#about",
-  },
-  {
-    title: "Experience",
-    link: "#experience",
-  },
-  {
-    title: "Skills",
-    link: "#skills",
-  },
-  {
-    title: "Projects",
-    link: "#projects",
-  },
+  { title: "Home", link: "#home" },
+  { title: "About", link: "#about" },
+  { title: "Experience", link: "#experience" },
+  { title: "Projects", link: "#projects" },
+  { title: "Skills", link: "#skills" },
+  { title: "Contact", link: "#contact" },
 ];
