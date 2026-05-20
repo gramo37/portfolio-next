@@ -1,10 +1,24 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { motion } from "framer-motion";
 import { data } from "../../constants";
 import SectionHeading from "./SectionHeading";
-import { fadeInUp, staggerContainer, viewportOnce } from "../../lib/motion";
+import ScrollReveal from "./ScrollReveal";
+import { fadeInUp, staggerContainer } from "../../lib/motion";
+
+function skillBarVariants(proficiency: number) {
+  return {
+    hidden: { width: 0 },
+    visible: {
+      width: `${proficiency}%`,
+      transition: {
+        duration: 0.8,
+        ease: [0.22, 1, 0.36, 1] as const,
+        delay: 0.15,
+      },
+    },
+  };
+}
 
 function AnimatedSkill({
   skill_name,
@@ -13,30 +27,23 @@ function AnimatedSkill({
   skill_name: string;
   proficiency: number;
 }) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-40px" });
-
   return (
-    <motion.div ref={ref} variants={fadeInUp} className="space-y-2">
+    <motion.div variants={fadeInUp} className="space-y-2">
       <div className="flex justify-between items-center">
         <span className="text-sm font-medium text-foreground">
           {skill_name}
         </span>
         <motion.span
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
-          transition={{ delay: 0.5 }}
-          className="text-xs text-muted-foreground"
+          variants={fadeInUp}
+          className="text-xs text-muted-foreground tabular-nums"
         >
           {proficiency}%
         </motion.span>
       </div>
       <div className="relative h-2 rounded-full bg-muted overflow-hidden">
         <motion.div
+          variants={skillBarVariants(proficiency)}
           className="absolute inset-y-0 left-0 rounded-full bg-primary"
-          initial={{ width: 0 }}
-          animate={isInView ? { width: `${proficiency}%` } : { width: 0 }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
         />
       </div>
     </motion.div>
@@ -46,13 +53,7 @@ function AnimatedSkill({
 const Skills = () => {
   return (
     <section id="skills" className="section-padding bg-muted/30">
-      <motion.div
-        className="container-narrow"
-        initial="hidden"
-        whileInView="visible"
-        viewport={viewportOnce}
-        variants={staggerContainer}
-      >
+      <ScrollReveal className="container-narrow">
         <SectionHeading
           label="Skills"
           title="Technical expertise"
@@ -71,7 +72,7 @@ const Skills = () => {
             />
           ))}
         </motion.div>
-      </motion.div>
+      </ScrollReveal>
     </section>
   );
 };

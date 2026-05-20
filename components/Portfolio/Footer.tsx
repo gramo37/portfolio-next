@@ -51,13 +51,6 @@ const Footer = () => {
             </a>
           </div>
         </motion.div>
-
-        <div className="mt-8 pt-6 border-t border-border flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-xs text-muted-foreground">
-          <p>
-            © {year} {data.name}. All rights reserved.
-          </p>
-          <p>Built with Next.js & Tailwind CSS</p>
-        </div>
       </div>
     </motion.footer>
   );

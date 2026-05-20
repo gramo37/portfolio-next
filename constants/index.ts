@@ -13,7 +13,7 @@ export const data = {
   github_link: "https://github.com/gramo37",
   resume_link:
     "https://res.cloudinary.com/dwtxio5dn/image/upload/v1719068288/jkt0tc2uu85zevlba7r5.pdf",
-  totalExperience: "3+ yrs",
+  totalExperience: "5+ yrs",
   about: {
     "Frontend Development": {
       points: [
@@ -25,7 +25,7 @@ export const data = {
       linesOfCode: 30000,
       icon: FaReact,
       color: "#4ade80",
-      projectsCompleted: 10,
+      projectsCompleted: 7,
     },
     "Backend Development": {
       points: [
@@ -37,20 +37,10 @@ export const data = {
       linesOfCode: 20000,
       icon: GrNodes,
       color: "#60a5fa",
-      projectsCompleted: 8,
+      projectsCompleted: 7,
     },
   },
   education: [
-    {
-      degree_name: "Scaler",
-      university_name: "A Structured and Flexible Online Program",
-      duration: "Apr 2021 - Present",
-      description: [
-        "Solved more than 400 DSA Problems",
-        "Learned about LLD and HLD with real world examples",
-      ],
-      color: "rgb(21 128 61 / 1)",
-    },
     {
       degree_name: "Bachelors Degree",
       university_name:
@@ -64,6 +54,16 @@ export const data = {
       ],
       color: "rgb(202 138 4 / 1)",
     },
+    {
+      degree_name: "Scaler",
+      university_name: "A Structured and Flexible Online Program",
+      duration: "Apr 2021 - Present",
+      description: [
+        "Solved more than 400 DSA Problems",
+        "Learned about LLD and HLD with real world examples",
+      ],
+      color: "rgb(21 128 61 / 1)",
+    },
   ],
   skills: [
     {
@@ -74,6 +74,11 @@ export const data = {
     {
       skill_name: "CSS",
       proficiency: 50,
+      maximum_proficiency: 100,
+    },
+    {
+      skill_name: "Javascript",
+      proficiency: 70,
       maximum_proficiency: 100,
     },
     {
@@ -99,6 +104,11 @@ export const data = {
     {
       skill_name: "Typescript",
       proficiency: 50,
+      maximum_proficiency: 100,
+    },
+    {
+      skill_name: "Python",
+      proficiency: 30,
       maximum_proficiency: 100,
     },
     {
@@ -214,10 +224,21 @@ export const data = {
       ],
       color: "rgb(21 128 61 / 1)",
     },
+    // {
+    //   company_name: "Ayekart Fintech",
+    //   profession: "Sr Node JS Developer",
+    //   duration: "Mar 2025 - May 2025",
+    //   totalExperience: "2 mon",
+    //   description: [
+    //     "Worked on integrating tally with the existing Ayekart platform",
+    //     "Worked on Lead management system for the Ayekart platform",
+    //   ],
+    //   color: "rgb(21 128 61 / 1)",
+    // },
     {
       company_name: "Jeeva",
       profession: "Solutions Architect",
-      duration: "Oct 2024 - May 2025",
+      duration: "Oct 2024 - Mar 2025",
       totalExperience: "3 mon",
       description: [
         "Developed scalable frontend features with React and TypeScript, and built APIs using Python and FastAPI.",
@@ -248,7 +269,7 @@ export const data = {
     {
       company_name: "Tata Consultancy Services Ltd",
       profession: "Assistant System Engineer",
-      duration: "Aug 2021 - Apr 2023",
+      duration: "Jul 2021 - Apr 2023",
       totalExperience: "1 yr 9 mon",
       description: [
         "- Worked as a junior engineer for a client named IndiaFirstLife Insurance on a product named Simplify.",
