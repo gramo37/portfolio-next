@@ -2,7 +2,7 @@ import { GrNodes } from "react-icons/gr";
 import { FaReact } from "react-icons/fa6";
 
 export const data = {
-  name: "Pushkar Gramopadhye",
+  name: "Prasanna Gramopadhye",
   email: "gramopadhye37@gmail.com",
   phone: "7875594848",
   profile_photo:
